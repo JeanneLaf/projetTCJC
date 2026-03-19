@@ -1,0 +1,299 @@
+‚§patches–ƒ¥value¢op§replace¤path“¬cell_resultsÙ$df8c4387-1a85-4567-8632-cb1da8076ecd¤logsƒ¥value’’ÚT	<div style="display: flex; justify-content: space-between;">
+		<div style="flex: 1; min-width: 450px;">
+			<div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -> Trust Notebook</span><iframe srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    
+    &lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://code.jquery.com/jquery-3.7.1.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css&quot;/&gt;
+    
+            &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; /&gt;
+            &lt;style&gt;
+                #map_2de6d986aa52ccc77e954ff221777ce3 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            &lt;/style&gt;
+
+            &lt;style&gt;html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            &lt;/style&gt;
+
+            &lt;style&gt;#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            &lt;/style&gt;
+
+            &lt;script&gt;
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            &lt;/script&gt;
+
+        
+&lt;/head&gt;
+&lt;body&gt;
+    
+    
+            &lt;div class=&quot;folium-map&quot; id=&quot;map_2de6d986aa52ccc77e954ff221777ce3&quot; &gt;&lt;/div&gt;
+        
+&lt;/body&gt;
+&lt;script&gt;
+    
+    
+            var map_2de6d986aa52ccc77e954ff221777ce3 = L.map(
+                &quot;map_2de6d986aa52ccc77e954ff221777ce3&quot;,
+                {
+                    center: [0.0, 0.0],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  &quot;zoom&quot;: 1,
+  &quot;zoomControl&quot;: true,
+  &quot;preferCanvas&quot;: false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_1bd2e951633f62f276fb34618cfe531d = L.tileLayer(
+                &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
+                {
+  &quot;minZoom&quot;: 0,
+  &quot;maxZoom&quot;: 19,
+  &quot;maxNativeZoom&quot;: 19,
+  &quot;noWrap&quot;: false,
+  &quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;,
+  &quot;subdomains&quot;: &quot;abc&quot;,
+  &quot;detectRetina&quot;: false,
+  &quot;tms&quot;: false,
+  &quot;opacity&quot;: 1,
+}
+
+            );
+        
+    
+            tile_layer_1bd2e951633f62f276fb34618cfe531d.addTo(map_2de6d986aa52ccc77e954ff221777ce3);
+        
+    
+            var poly_line_2f08ed8d5b63c35dc4ec371408574e93 = L.polyline(
+                [[46.82998, -71.22799], [46.82934, -71.2274], [46.82943, -71.2272], [46.82955, -71.22691], [46.82956, -71.22683], [46.82952, -71.22676], [46.82898, -71.22625], [46.82864, -71.2259], [46.82854, -71.22582], [46.8282, -71.22593], [46.82815, -71.22595], [46.82816, -71.22598]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;blue&quot;, &quot;dashArray&quot;: &quot;1, 10&quot;, &quot;dashOffset&quot;: null, &quot;fill&quot;: false, &quot;fillColor&quot;: &quot;blue&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 5}
+            ).addTo(map_2de6d986aa52ccc77e954ff221777ce3);
+        
+    
+        var popup_29f3007ecda4be3378a29fc139841491 = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_4c2c5eddbfaaab2dd877d9a3effd284a = $(`&lt;div id=&quot;html_4c2c5eddbfaaab2dd877d9a3effd284a&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;- Marcher 4 minutes&lt;/div&gt;`)[0];
+                popup_29f3007ecda4be3378a29fc139841491.setContent(html_4c2c5eddbfaaab2dd877d9a3effd284a);
+            
+        
+
+        poly_line_2f08ed8d5b63c35dc4ec371408574e93.bindPopup(popup_29f3007ecda4be3378a29fc139841491)
+        ;
+
+        
+    
+    
+            var poly_line_3611fdd57a9aa8bc75bd075d43cde179 = L.polyline(
+                [[46.82815, -71.22594], [46.82814, -71.22594], [46.82805, -71.22598], [46.82713, -71.22629], [46.82629, -71.22658], [46.82629, -71.22658], [46.82614, -71.22664], [46.82611, -71.22665], [46.82593, -71.22671], [46.82416, -71.22732], [46.82416, -71.22732], [46.82412, -71.22733], [46.8241, -71.22733], [46.82387, -71.2275], [46.82335, -71.22697], [46.82335, -71.22697], [46.82332, -71.22694], [46.82325, -71.22687], [46.82257, -71.22621], [46.82246, -71.22644], [46.82239, -71.22661], [46.82239, -71.22661], [46.82184, -71.22787], [46.82174, -71.22821], [46.82166, -71.22836], [46.82166, -71.22836], [46.82161, -71.22846], [46.8216, -71.2285], [46.82156, -71.22858], [46.82149, -71.22867], [46.82093, -71.22929], [46.82039, -71.22987], [46.82011, -71.23022], [46.81986, -71.23047]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#013888&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: false, &quot;fillColor&quot;: &quot;#013888&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 5}
+            ).addTo(map_2de6d986aa52ccc77e954ff221777ce3);
+        
+    
+        var popup_2c2124cba2f4c68d44d2e06069cda2b6 = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_e08ceec28f1aebaff8df5f8fab3e76f3 = $(`&lt;div id=&quot;html_e08ceec28f1aebaff8df5f8fab3e76f3&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;- Prendre le bus 19: 16:09-16:15 &lt;/div&gt;`)[0];
+                popup_2c2124cba2f4c68d44d2e06069cda2b6.setContent(html_e08ceec28f1aebaff8df5f8fab3e76f3);
+            
+        
+
+        poly_line_3611fdd57a9aa8bc75bd075d43cde179.bindPopup(popup_2c2124cba2f4c68d44d2e06069cda2b6)
+        ;
+
+        
+    
+    
+            var poly_line_20274288d02ed9beda9aa88f19e3e77c = L.polyline(
+                [[46.81989, -71.23053], [46.81986, -71.23047], [46.81959, -71.23073], [46.81956, -71.23068], [46.81953, -71.23063], [46.81949, -71.23058], [46.81946, -71.23056], [46.81941, -71.23053], [46.81856, -71.22991], [46.81832, -71.22976], [46.81823, -71.23009]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;blue&quot;, &quot;dashArray&quot;: &quot;1, 10&quot;, &quot;dashOffset&quot;: null, &quot;fill&quot;: false, &quot;fillColor&quot;: &quot;blue&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 5}
+            ).addTo(map_2de6d986aa52ccc77e954ff221777ce3);
+        
+    
+        var popup_d166d3016a8e72e3f34375bce7c41f91 = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_73f104dddef7f1f93ce8894029c39545 = $(`&lt;div id=&quot;html_73f104dddef7f1f93ce8894029c39545&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;- Marcher 3 minutes&lt;/div&gt;`)[0];
+                popup_d166d3016a8e72e3f34375bce7c41f91.setContent(html_73f104dddef7f1f93ce8894029c39545);
+            
+        
+
+        poly_line_20274288d02ed9beda9aa88f19e3e77c.bindPopup(popup_d166d3016a8e72e3f34375bce7c41f91)
+        ;
+
+        
+    
+    
+            var poly_line_813d307ed5c618c388ac9b75c2ee69a3 = L.polyline(
+                [[46.8182, -71.23018], [46.81829, -71.23024], [46.81847, -71.23043], [46.8186, -71.23058], [46.81876, -71.23078], [46.81881, -71.23085], [46.81888, -71.23097], [46.81894, -71.23108], [46.81902, -71.23123], [46.8191, -71.2314], [46.81926, -71.23179], [46.81932, -71.23197], [46.8194, -71.23227], [46.81945, -71.23255], [46.81948, -71.2328], [46.8195, -71.23307], [46.81948, -71.23337], [46.8194, -71.23442], [46.81938, -71.23463], [46.81935, -71.23496], [46.81935, -71.2354], [46.81936, -71.23573], [46.81938, -71.23607], [46.81941, -71.2364], [46.81946, -71.23684], [46.81956, -71.23745], [46.81969, -71.23797], [46.81974, -71.23826], [46.81984, -71.23886], [46.81996, -71.23957], [46.82011, -71.2403], [46.82026, -71.24109], [46.8203, -71.24128], [46.82047, -71.24205], [46.82071, -71.24276], [46.82093, -71.24328], [46.82096, -71.24334], [46.82126, -71.24389], [46.82144, -71.24418], [46.82196, -71.24488], [46.82235, -71.24534], [46.82267, -71.24575], [46.82292, -71.24614], [46.82311, -71.24652], [46.82334, -71.24697], [46.82345, -71.24726], [46.82362, -71.24769], [46.82399, -71.24865], [46.82467, -71.25029], [46.825, -71.25106], [46.82507, -71.25125], [46.82515, -71.25142], [46.82542, -71.25216], [46.82579, -71.25294], [46.82597, -71.25332], [46.82616, -71.25365], [46.82637, -71.25396], [46.82647, -71.25409], [46.82663, -71.25427], [46.82671, -71.25439], [46.82728, -71.25495], [46.82803, -71.25564], [46.82834, -71.25593], [46.82915, -71.2567], [46.83007, -71.25754], [46.83118, -71.25856], [46.83125, -71.25863], [46.83227, -71.25954], [46.8323, -71.25958], [46.83408, -71.26124], [46.83599, -71.26301], [46.83657, -71.26354], [46.83725, -71.26415], [46.83759, -71.26445], [46.83852, -71.26531], [46.83955, -71.2663], [46.83999, -71.26668], [46.84005, -71.26673], [46.8402, -71.26687], [46.84157, -71.2681], [46.84174, -71.26826], [46.84241, -71.26889], [46.84285, -71.26929], [46.84302, -71.26945], [46.84442, -71.27085], [46.84484, -71.2713], [46.84553, -71.27212], [46.84644, -71.27333], [46.84662, -71.27355], [46.84665, -71.27359], [46.84692, -71.274], [46.84744, -71.27475], [46.84769, -71.2751], [46.84852, -71.27632], [46.84878, -71.2767], [46.8488, -71.27672], [46.84938, -71.27738], [46.84962, -71.27765], [46.84996, -71.27802], [46.85038, -71.27845], [46.85051, -71.27856], [46.85063, -71.27868], [46.85085, -71.27886], [46.85105, -71.279], [46.85123, -71.27913], [46.85134, -71.27916], [46.85144, -71.27916], [46.85157, -71.27913], [46.8517, -71.27904], [46.85178, -71.27892], [46.85183, -71.27883], [46.85194, -71.27874], [46.85389, -71.28028], [46.85401, -71.28035], [46.85413, -71.28042], [46.8543, -71.28052], [46.85423, -71.28071], [46.85407, -71.28113], [46.85393, -71.28159], [46.85379, -71.28222], [46.85342, -71.28389], [46.85339, -71.28405], [46.85335, -71.28419], [46.85318, -71.2847], [46.85306, -71.285], [46.85287, -71.28542], [46.85277, -71.28563], [46.85269, -71.28581], [46.85258, -71.28607], [46.85258, -71.28607], [46.85252, -71.28621], [46.8519, -71.28762], [46.85176, -71.28791], [46.85167, -71.2881], [46.85167, -71.2881], [46.85067, -71.29029], [46.85065, -71.29033], [46.85065, -71.29033], [46.85, -71.29178], [46.84946, -71.29293], [46.84946, -71.29293], [46.84941, -71.29303], [46.8492, -71.29349], [46.84907, -71.29377], [46.8489, -71.29412], [46.84854, -71.29485], [46.84815, -71.29567], [46.84807, -71.29589], [46.84796, -71.29627], [46.84794, -71.29636], [46.84787, -71.29669], [46.84787, -71.29675], [46.84787, -71.29675], [46.84786, -71.2968], [46.84786, -71.29682], [46.84783, -71.29704], [46.84782, -71.29721], [46.84781, -71.29735], [46.8478, -71.29783], [46.84784, -71.29819], [46.84787, -71.29843], [46.84791, -71.29866], [46.84798, -71.29895], [46.84838, -71.30048], [46.84858, -71.30129], [46.84858, -71.30129], [46.84859, -71.30131], [46.84862, -71.30143], [46.84888, -71.30246], [46.84919, -71.30363], [46.84933, -71.30419], [46.84933, -71.30419], [46.84939, -71.30441], [46.84948, -71.30474], [46.84973, -71.3057], [46.84989, -71.30635], [46.84989, -71.30635], [46.84993, -71.30648], [46.84997, -71.30665], [46.85013, -71.30725], [46.85023, -71.30757], [46.85035, -71.30792], [46.8506, -71.30841], [46.8507, -71.30855], [46.8507, -71.30855], [46.85074, -71.30861], [46.8508, -71.30871], [46.85121, -71.30914], [46.8515, -71.30944], [46.85178, -71.30973], [46.85192, -71.30989], [46.85197, -71.30995], [46.85203, -71.31002], [46.85211, -71.31016], [46.8523, -71.31048], [46.85245, -71.31077], [46.85258, -71.31106], [46.85262, -71.31118], [46.85262, -71.31118], [46.85265, -71.31125], [46.85268, -71.31135], [46.85294, -71.31202], [46.85314, -71.31251], [46.85365, -71.31379], [46.85423, -71.3153], [46.85423, -71.3153], [46.85424, -71.31531], [46.85428, -71.31543], [46.85471, -71.31655], [46.85483, -71.31687], [46.85498, -71.31736], [46.85507, -71.31771], [46.85511, -71.31794], [46.85517, -71.31823], [46.85531, -71.319], [46.85534, -71.31916], [46.85534, -71.31916], [46.85548, -71.31996], [46.85558, -71.32048], [46.85565, -71.32081], [46.85573, -71.3211], [46.85582, -71.32138], [46.85596, -71.32174], [46.8561, -71.32206], [46.85615, -71.32215], [46.85618, -71.3222], [46.85618, -71.3222], [46.85625, -71.32232], [46.85655, -71.32277], [46.85677, -71.32309], [46.85692, -71.32341], [46.85705, -71.3237], [46.85714, -71.32397], [46.85726, -71.32437], [46.85728, -71.32445], [46.85728, -71.32445], [46.85732, -71.32463], [46.85734, -71.32484], [46.85736, -71.3249], [46.85736, -71.32512], [46.85737, -71.32551], [46.85736, -71.32567], [46.8573, -71.32619], [46.85722, -71.32678], [46.85721, -71.32683], [46.85721, -71.32683], [46.8572, -71.32691], [46.85717, -71.32715], [46.85715, -71.32744], [46.85715, -71.32784], [46.85717, -71.32817], [46.85725, -71.32885], [46.85727, -71.32898], [46.85731, -71.32918], [46.85735, -71.32946], [46.85735, -71.32946], [46.85745, -71.33001], [46.85768, -71.3314], [46.85774, -71.33175], [46.85785, -71.33246], [46.85785, -71.33246], [46.85791, -71.3328], [46.85797, -71.33313], [46.85818, -71.33439], [46.85822, -71.33471], [46.85828, -71.3351], [46.85833, -71.33542], [46.85834, -71.33548], [46.85836, -71.33565], [46.85836, -71.33565], [46.85837, -71.33574], [46.85841, -71.33604], [46.85841, -71.33635], [46.85841, -71.33664], [46.8584, -71.3369], [46.85839, -71.33709], [46.85838, -71.33716], [46.85834, -71.33737], [46.85832, -71.33751], [46.85825, -71.3377], [46.85801, -71.33829], [46.85801, -71.33829], [46.85799, -71.33836], [46.85794, -71.33846], [46.85722, -71.3401], [46.85715, -71.3403], [46.85658, -71.34158], [46.85658, -71.34158], [46.85656, -71.34161], [46.85654, -71.34166], [46.85649, -71.34179], [46.85644, -71.34192], [46.85638, -71.34208], [46.85634, -71.34223], [46.85627, -71.3425], [46.85622, -71.34275], [46.85619, -71.34309], [46.85617, -71.3433], [46.85616, -71.34364], [46.85617, -71.34395], [46.85615, -71.34407], [46.85616, -71.34425], [46.85616, -71.34425], [46.85617, -71.34444], [46.85618, -71.34451], [46.8563, -71.34637], [46.85631, -71.34666], [46.85633, -71.347], [46.85633, -71.347], [46.85634, -71.34703], [46.85637, -71.34742], [46.8564, -71.34825], [46.85645, -71.3494], [46.85645, -71.34952], [46.85645, -71.34952], [46.85644, -71.34956], [46.85645, -71.34994], [46.85645, -71.35022], [46.85645, -71.35042], [46.85645, -71.35051], [46.85643, -71.35077], [46.8564, -71.35106], [46.85636, -71.35148], [46.85631, -71.35196], [46.85629, -71.35216], [46.85629, -71.35216], [46.85627, -71.35241], [46.85626, -71.35254], [46.85624, -71.35269], [46.85619, -71.35319], [46.85617, -71.35345], [46.85615, -71.3537], [46.85612, -71.35399], [46.85603, -71.3548], [46.85602, -71.35489], [46.85602, -71.35489], [46.856, -71.35508], [46.85598, -71.35515], [46.8559, -71.3554], [46.85582, -71.35569], [46.85576, -71.35589], [46.85572, -71.35603], [46.85567, -71.35613], [46.85561, -71.35624], [46.85528, -71.35698], [46.85527, -71.35701], [46.85525, -71.35714], [46.85523, -71.35722], [46.85523, -71.35722], [46.85518, -71.35742], [46.85515, -71.35763], [46.85514, -71.35784], [46.85518, -71.35814], [46.85523, -71.3584], [46.8553, -71.35855], [46.85539, -71.35872], [46.8556, -71.35905], [46.85589, -71.35948], [46.85597, -71.35959], [46.85605, -71.35973], [46.8561, -71.35986], [46.85614, -71.35998], [46.85616, -71.36018], [46.85615, -71.36035], [46.85611, -71.36057], [46.85596, -71.36091], [46.85583, -71.36109], [46.85565, -71.36137], [46.85565, -71.36137], [46.85565, -71.36138], [46.85519, -71.36208], [46.85482, -71.36264], [46.85477, -71.36272], [46.85477, -71.36272], [46.85391, -71.36403], [46.85359, -71.36453], [46.85354, -71.36461]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#E04503&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: false, &quot;fillColor&quot;: &quot;#E04503&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 5}
+            ).addTo(map_2de6d986aa52ccc77e954ff221777ce3);
+        
+    
+        var popup_aadd2af9f42d2522a58e3b1ad0f32536 = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_aefc20bcd79714f2990913e33a49ead2 = $(`&lt;div id=&quot;html_aefc20bcd79714f2990913e33a49ead2&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;- Prendre le bus 284: 16:24-16:54 &lt;/div&gt;`)[0];
+                popup_aadd2af9f42d2522a58e3b1ad0f32536.setContent(html_aefc20bcd79714f2990913e33a49ead2);
+            
+        
+
+        poly_line_813d307ed5c618c388ac9b75c2ee69a3.bindPopup(popup_aadd2af9f42d2522a58e3b1ad0f32536)
+        ;
+
+        
+    
+    
+            var poly_line_e24c0da72c9dadbca17521ed8740c12d = L.polyline(
+                [[46.85357, -71.36466], [46.85359, -71.36468], [46.85333, -71.36507], [46.85327, -71.36517], [46.85307, -71.36547], [46.8529, -71.36573], [46.85283, -71.36584], [46.85279, -71.36579], [46.85307, -71.36538], [46.85307, -71.36538]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;blue&quot;, &quot;dashArray&quot;: &quot;1, 10&quot;, &quot;dashOffset&quot;: null, &quot;fill&quot;: false, &quot;fillColor&quot;: &quot;blue&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 5}
+            ).addTo(map_2de6d986aa52ccc77e954ff221777ce3);
+        
+    
+        var popup_ef996d9db2283f64c39af4ddc099323b = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_2438e7b392385daee6a17c3fb1bcf501 = $(`&lt;div id=&quot;html_2438e7b392385daee6a17c3fb1bcf501&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;- Marcher 2 minutes&lt;/div&gt;`)[0];
+                popup_ef996d9db2283f64c39af4ddc099323b.setContent(html_2438e7b392385daee6a17c3fb1bcf501);
+            
+        
+
+        poly_line_e24c0da72c9dadbca17521ed8740c12d.bindPopup(popup_ef996d9db2283f64c39af4ddc099323b)
+        ;
+
+        
+    
+    
+            map_2de6d986aa52ccc77e954ff221777ce3.fitBounds(
+                [[46.75, -71.5], [46.96, -71.4]],
+                {}
+            );
+        
+&lt;/script&gt;
+&lt;/html&gt;" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe></div></div>
+		</div>
+		<div style="flex: 1; min-width: 500px;white-space:pre-line;background-color:#dce8fa;padding:20px">
+			<h5>ItinÃ©raire</h5><hr width="230px">
+			- Marcher 4 minutes
+- Prendre le bus 19: 16:09-16:15
+- Marcher 3 minutes
+- Prendre le bus 284: 16:24-16:54
+- Marcher 2 minutes
+- heure d&apos;arrivÃ©e: 16:57<br>
+			DurÃ©e du trajet: <b>51 minutes</b>
+		</div>	
+	</div>							
+©text/html’ÚO<script>
+	const PAD_RIGHT = 6 // this is padding-right from <main>
+	const PAD_LEFT = 25 // this is padding-left from <main>
+	const CELL_WIDTH = 700 // this is from the margin calculations of <main>
+	
+	const wrapper = currentScript.closest(".pui-big-wrapper")
+	const cell = wrapper.closest("pluto-cell")
+	const notebook = cell.closest("pluto-notebook")
+	const editor = notebook.closest("pluto-editor")
+	const max_width = 800
+
+	if(wrapper.parentElement.tagName !== "PLUTO-OUTPUT") {
+		console.error("Not directly displayed in the cell. ", wrapper.parentElement.tagName)
+		return
+	}
+
+	if (max_width < CELL_WIDTH) return
+
+	const clear_width = () => {
+		cell.style.width = null
+		cell.style.marginLeft = null
+	}
+
+	let last_width = -1
+	const set_width = (entries) => {
+		for(let e of entries) {
+			
+			const container_width = e.contentRect.width
+
+			// No need to recompute
+			if(last_width === container_width) return
+			last_width = container_width
+
+			// Window to small for this feature
+			if(container_width < CELL_WIDTH + PAD_RIGHT + PAD_LEFT) {
+				clear_width()
+				return
+			}
+
+			const new_size = Math.min(container_width - PAD_LEFT - PAD_RIGHT, max_width)
+
+
+			const left_margin = notebook.getBoundingClientRect().x - editor.getBoundingClientRect().x
+			
+			
+			const max_pad = left_margin - PAD_LEFT
+			const pad = Math.max(0, 
+				Math.min(max_pad, (new_size - CELL_WIDTH) / 2)
+			)
+			
+			cell.style.width = `${new_size}px`
+			cell.style.marginLeft = `${-pad}px`
+		}
+	}
+
+	const ro = new ResizeObserver(set_width)
+	ro.observe(editor)
+	invalidation.then(() => {
+		ro.disconnect()
+		clear_width()
+	})
+</script>©text/html¢op§replace¤path•¬cell_resultsÙ$df8c4387-1a85-4567-8632-cb1da8076ecd¦output¤body¨childrenƒ¥valueÃ¢op§replace¤path”¬cell_resultsÙ$df8c4387-1a85-4567-8632-cb1da8076ecd¦output°persist_js_stateƒ¥valueËAÚo¥³Jí¢op§replace¤path”¬cell_resultsÙ$df8c4387-1a85-4567-8632-cb1da8076ecd¦output²last_run_timestampƒ¥valueÎŠÜò¢op§replace¤path“¬cell_resultsÙ$df8c4387-1a85-4567-8632-cb1da8076ecd§runtimeƒ¥value…¤name¨notebook¨subtasksƒ©workspace…¤name©workspace¨subtasks‚¬init_process…¤name¬init_process¨subtasks„¡4…¤name¡4¨subtasks€«finished_atËAÚo}·nL§successÃªstarted_atËAÚo}3šØ¡1…¤name¡1¨subtasks€«finished_atËAÚo}&Øõ§successÃªstarted_atËAÚo|û¹õ¡2…¤name¡2¨subtasks€«finished_atËAÚo},#p§successÃªstarted_atËAÚo}&Ù
+¡3…¤name¡3¨subtasks€«finished_atËAÚo}3šÃ§successÃªstarted_atËAÚo},#«finished_atËAÚo}·nY§successÃªstarted_atËAÚo|û¹Ü®create_process…¤name®create_process¨subtasks‚Ù!Loading notebook boot environment…¤nameÙ!Loading notebook boot environment¨subtasks€«finished_atËAÚo|û¹Ã§successÃªstarted_atËAÚo|Æç°Starting process…¤name°Starting process¨subtasks€«finished_atËAÚo|ÆÒ§successÃªstarted_atËAÚoz?ã«finished_atËAÚo|û¹Ã§successÃªstarted_atËAÚoz?Î«finished_atËAÚo}·n]§successÃªstarted_atËAÚoz?¹£pkg…¤name£pkg¨subtasks„¬instantiate1…¤name¬instantiate1¨subtasks€«finished_atËAÚo|ãJŒ§successÃªstarted_atËAÚo{Æà˜¨analysis…¤name¨analysis¨subtasks€«finished_atËAÚoxåŠÎ§successÃªstarted_atËAÚoxä·»ªprecompile…¤nameªprecompile¨subtasks€«finished_atËAÚo~u§successÃªstarted_atËAÚo|ãJ²§resolve…¤name§resolve¨subtasks€«finished_atËAÚo{Æà‹§successÃªstarted_atËAÚozf›|«finished_atËAÚo~›§successÃªstarted_atËAÚoxä·£run…¤name£run¨subtasks‚°resolve_topology…¤name°resolve_topology¨subtasks€«finished_atËAÚo¥¥~Z§successÃªstarted_atËAÚo¥¥}5¨evaluate…¤name¨evaluate¨subtasks¡1…¤name¡1¨subtasks€«finished_atËAÚo¥³K<§successÃªstarted_atËAÚo¥¥ú«finished_atËAÚo¥³K¾§successÃªstarted_atËAÚo¥¥~c«finished_atËAÚo¥³K¾§successÃªstarted_atËAÚo¥¥}(«finished_atÀ§successÀªstarted_atËAÚovF*¢op£add¤path‘«status_treeµids_of_cells_that_ran‘Ù$df8c4387-1a85-4567-8632-cb1da8076ecd
