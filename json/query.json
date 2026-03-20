@@ -1,0 +1,24 @@
+{
+  "from": {
+    "coordinates": {
+      "latitude": 46.83937990008255,
+      "longitude": -71.60736655345838
+    }
+  },
+  "to": {
+    "coordinates": {
+      "latitude": 46.76757072871729,
+      "longitude": -71.29716158213193
+    }
+  },
+  "dateTime": "2026-04-06T07:00:00-04:00",
+  "modes": {
+    "transportModes": [
+      {
+        "transportMode": "bus"
+      }
+    ],
+    "accessMode": "foot",
+    "egressMode": "foot"
+  }
+}
