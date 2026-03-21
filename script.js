@@ -1,39 +1,41 @@
-// Wait for the document to load before running the script
 (function ($) {
+  function loadNotebook() {
+    var hash = location.hash || '#accueil';
+    var region = hash.slice(1) + "/" + hash.slice(1);
+    var $iframe = $('#content-frame');
 
-  // We use some Javascript and the URL #fragment to hide/show different parts of the page
-  // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#Linking_to_an_element_on_the_same_page
-  $(window).on('load hashchange', function(){
+    // 1. Set the new source
+    $iframe.attr('src', region + '.html');
 
-    // First hide all content regions, then show the content-region specified in the URL hash
-    // (or if no hash URL is found, default to first menu item)
-    $('.content-region').hide();
+    // 2. Attach the load listener
+    $iframe.off('load').on('load', function() {
+      var frame = this;
 
-    // Remove any active classes on the main-menu
-    $('.main-menu a').removeClass('active');
-    var region = location.hash.toString() || $('.main-menu a:first').attr('href');
-
-    // 1. Get the name from the hash (e.g., "#about" becomes "about")
-    // If no hash exists, default to 'first'
-    var hash = location.hash.toString() || '#first';
-    var region = hash.slice(1);
-
-    // 2. Load the external file (e.g., "about.html") into your main div
-    // This replaces everything inside #content with the new file's HTML
-    $('#content').load(region + '/'+ region+'.html', function(response, status, xhr) {
-      if (status == "error") {
-        $("#content").html("<p>Price is right fail horn: Content not found.</p>");
-      }
+      // Give Pluto a moment (200ms) to render its initial cells
+      setTimeout(function() {
+        resizeIframe(frame);
+      }, 200);
     });
 
-    // Highlight the menu link associated with this region by adding the .active CSS class
-    $('.main-menu a[href="'+ region +'"]').addClass('active');
+    // 3. UI Updates
+    $('.main-menu a').removeClass('active');
+    $('.main-menu a[href="' + hash + '"]').addClass('active');
+  }
 
-    // Alternate method: Use AJAX to load the contents of an external file into a div based on URL fragment
-    // This will extract the region name from URL hash, and then load [region].html into the main #content div
-    // var region = location.hash.toString() || '#first';
-    // $('#content').load(region.slice(1) + '.html')
+  function resizeIframe(frame) {
+    if (frame && frame.contentWindow) {
+      // We force the height to 'auto' first so scrollHeight is accurate
+      $(frame).css('height', 'auto');
+      var newHeight = frame.contentWindow.document.documentElement.scrollHeight;
+      $(frame).css('height', newHeight + 'px');
+    }
+  }
 
+  $(window).on('resize', function() {
+    var frame = document.getElementById('content-frame');
+    resizeIframe(frame);
   });
 
+  $(window).on('hashchange', loadNotebook);
+  $(document).ready(loadNotebook);
 })(jQuery);

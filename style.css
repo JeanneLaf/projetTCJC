@@ -10,7 +10,7 @@ body {
   font-size: 1.5em; /* currently ems cause chrome bug misinterpreting rems on body element */
   line-height: 1.6;
   font-weight: 400;
-  font-family: "Roboto", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Iosevka Charon Mono", monospace;
   color: #FFFFFF;
 }
 
@@ -98,8 +98,8 @@ html {
 }
 
 header, footer {
-  background: #c19079;
-  padding:25px;
+  background: #02547a;
+  padding:5px;
   color:#f5c2ab;
   text-align:center;
 }
@@ -109,13 +109,15 @@ header, footer {
 }
 
 #content {
-  background: #f5c2ab;
+  background: white;
   padding:25px;
   color:#ef9165;
 }
-
-iframe {
-  max-width:100%;
+#content-frame {
+  width:100%;
+  display:block;
+  overflow:hidden;
+  border:none;
 }
 
 /* Menu Links */
