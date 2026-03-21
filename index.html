@@ -1,28 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!doctype html>
+<html>
+  <head>
+    <!-- Page setup -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Proposition d'amélioration du transport collectif à SCJC'</title>
+    <meta name="description" content="A brief description of your site for search engines">
+    <meta name="author" content="Information about the author here">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <link rel="icon" type="image/png" href="favicon.png">
 
-    <style>
-    body {
-        font-family: sans-serif;
-    }
-    </style>
+    <!-- Stylesheets -->
+    <!-- Reset default styles and add support for google fonts -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet" type="text/css" />
 
-    <link rel="stylesheet" href="index.css">
-    <script src="index.js" type="module" defer></script>
-</head>  
-<body>
-    <h1>Notebooks</h1>
-    
-    <ul>
-    <li><a href="transit.html">transit</a></li>
-    </ul>
-    <p style="
-    opacity: .3;
-    margin-top: 5rem;
-">Git commit: <code>805d160</code></p>
+    <!-- Custom styles -->
+    <link href="style.css" rel="stylesheet" type="text/css" />
 
-</body>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous">
+    </script>
+
+
+    <!-- Want to add Bootstrap? -->
+    <!-- Visit: https://getbootstrap.com/docs/4.3/getting-started/introduction/ -->
+
+    <!-- Custom font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Iosevka+Charon+Mono:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <header id="header">
+      <!-- Menu link fragment #id should match a div id. Example: <a href="#home"> links to <div id="home"></div>  -->
+      <ul class="main-menu">
+        <li><a href="#accueil">Parcours proposés</a></li>
+        <li><a href="#proposition1">Proposition 1</a></li>
+        <li><a href="#proposition2">Proposition 2</a></li>
+        <li><a href="#proposition3">Proposition 3</a></li>
+      </ul>
+    </header>
+
+    <div id="container">
+      <div class="inner">
+        <div id="content">
+           <iframe id="content-frame"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- Load additional JS scripts here -->
+    <script type="text/javascript" src="script.js"></script>
+
+  </body>
 </html>
