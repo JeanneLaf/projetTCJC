@@ -1,0 +1,227 @@
+‚§patches–ƒ¥value¢op§replace¤path“¬cell_resultsÙ$df8c4387-1a85-4567-8632-cb1da8076ecd¤logsƒ¥value’’Ú 	<div style="display: flex; justify-content: space-between;">
+		<div style="flex: 1; min-width: 450px;">
+			<div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -> Trust Notebook</span><iframe srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    
+    &lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://code.jquery.com/jquery-3.7.1.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css&quot;/&gt;
+    
+            &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; /&gt;
+            &lt;style&gt;
+                #map_90ee9894322357df864f43042685009d {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            &lt;/style&gt;
+
+            &lt;style&gt;html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            &lt;/style&gt;
+
+            &lt;style&gt;#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            &lt;/style&gt;
+
+            &lt;script&gt;
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            &lt;/script&gt;
+
+        
+&lt;/head&gt;
+&lt;body&gt;
+    
+    
+            &lt;div class=&quot;folium-map&quot; id=&quot;map_90ee9894322357df864f43042685009d&quot; &gt;&lt;/div&gt;
+        
+&lt;/body&gt;
+&lt;script&gt;
+    
+    
+            var map_90ee9894322357df864f43042685009d = L.map(
+                &quot;map_90ee9894322357df864f43042685009d&quot;,
+                {
+                    center: [0.0, 0.0],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  &quot;zoom&quot;: 1,
+  &quot;zoomControl&quot;: true,
+  &quot;preferCanvas&quot;: false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_98d78ccbbf2e76383e064ed4edd24a5e = L.tileLayer(
+                &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
+                {
+  &quot;minZoom&quot;: 0,
+  &quot;maxZoom&quot;: 19,
+  &quot;maxNativeZoom&quot;: 19,
+  &quot;noWrap&quot;: false,
+  &quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;,
+  &quot;subdomains&quot;: &quot;abc&quot;,
+  &quot;detectRetina&quot;: false,
+  &quot;tms&quot;: false,
+  &quot;opacity&quot;: 1,
+}
+
+            );
+        
+    
+            tile_layer_98d78ccbbf2e76383e064ed4edd24a5e.addTo(map_90ee9894322357df864f43042685009d);
+        
+    
+            var poly_line_d354599df78152f68a316ad78d676712 = L.polyline(
+                [[46.81537, -71.31412], [46.81478, -71.3155], [46.81475, -71.31554], [46.81472, -71.31561], [46.81449, -71.31539], [46.81349, -71.31443], [46.81273, -71.31372], [46.81226, -71.31328], [46.8122, -71.31322], [46.81213, -71.31318], [46.81204, -71.31312], [46.81202, -71.31324], [46.81202, -71.31326], [46.81201, -71.31328], [46.812, -71.31337], [46.81197, -71.31359], [46.81191, -71.31402], [46.81184, -71.31448], [46.81182, -71.31459], [46.81182, -71.3146], [46.81184, -71.31461]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;blue&quot;, &quot;dashArray&quot;: &quot;1, 10&quot;, &quot;dashOffset&quot;: null, &quot;fill&quot;: false, &quot;fillColor&quot;: &quot;blue&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 5}
+            ).addTo(map_90ee9894322357df864f43042685009d);
+        
+    
+        var popup_ef3c3fb03110024751ef8b64ea3b8e4e = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_83ca09ec749f124928eb01fd4b6de9dc = $(`&lt;div id=&quot;html_83ca09ec749f124928eb01fd4b6de9dc&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;Marche 8 minutes&lt;/div&gt;`)[0];
+                popup_ef3c3fb03110024751ef8b64ea3b8e4e.setContent(html_83ca09ec749f124928eb01fd4b6de9dc);
+            
+        
+
+        poly_line_d354599df78152f68a316ad78d676712.bindPopup(popup_ef3c3fb03110024751ef8b64ea3b8e4e)
+        ;
+
+        
+    
+    
+            var poly_line_e79866099eb41c9c1fb19e49e08cd95b = L.polyline(
+                [[46.81184, -71.31461], [46.815, -71.32669], [46.815, -71.32669], [46.84035, -71.3953], [46.84035, -71.3953], [46.8862, -71.50953], [46.8862, -71.50953], [46.88611, -71.51665], [46.88611, -71.51665], [46.8402, -71.60858]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#8C6CE6&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: false, &quot;fillColor&quot;: &quot;#8C6CE6&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 5}
+            ).addTo(map_90ee9894322357df864f43042685009d);
+        
+    
+        var popup_8d355c1a8515e97a613d0173a66c096e = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_bc62931473b3ddc67351eeebe7e8e812 = $(`&lt;div id=&quot;html_bc62931473b3ddc67351eeebe7e8e812&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;Bus 14X: 12:50-13:18 &lt;/div&gt;`)[0];
+                popup_8d355c1a8515e97a613d0173a66c096e.setContent(html_bc62931473b3ddc67351eeebe7e8e812);
+            
+        
+
+        poly_line_e79866099eb41c9c1fb19e49e08cd95b.bindPopup(popup_8d355c1a8515e97a613d0173a66c096e)
+        ;
+
+        
+    
+    
+            map_90ee9894322357df864f43042685009d.fitBounds(
+                [[46.7, -71.6], [46.9, -71.4]],
+                {}
+            );
+        
+&lt;/script&gt;
+&lt;/html&gt;" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe></div></div>
+		</div>
+		<div style="flex: 1; min-width: 500px;white-space:pre-line;background-color:#dce8fa;padding-left:20px">
+			<h5>ItinÃ©raire</h5><hr width="230px" style="margin:0px">
+			<u>DÃ©part:</u> <b>12:42</b>   &nbsp;&nbsp;  <u>ArrivÃ©e:</u> <b>13:18</b>
+			DurÃ©e du trajet: <b>35 minutes</b><br>
+			- Marche 8 minutes
+- Bus 14X: 12:50-13:18
+	
+		</div>	
+	</div>							
+©text/html’ÚO<script>
+	const PAD_RIGHT = 6 // this is padding-right from <main>
+	const PAD_LEFT = 25 // this is padding-left from <main>
+	const CELL_WIDTH = 700 // this is from the margin calculations of <main>
+	
+	const wrapper = currentScript.closest(".pui-big-wrapper")
+	const cell = wrapper.closest("pluto-cell")
+	const notebook = cell.closest("pluto-notebook")
+	const editor = notebook.closest("pluto-editor")
+	const max_width = 800
+
+	if(wrapper.parentElement.tagName !== "PLUTO-OUTPUT") {
+		console.error("Not directly displayed in the cell. ", wrapper.parentElement.tagName)
+		return
+	}
+
+	if (max_width < CELL_WIDTH) return
+
+	const clear_width = () => {
+		cell.style.width = null
+		cell.style.marginLeft = null
+	}
+
+	let last_width = -1
+	const set_width = (entries) => {
+		for(let e of entries) {
+			
+			const container_width = e.contentRect.width
+
+			// No need to recompute
+			if(last_width === container_width) return
+			last_width = container_width
+
+			// Window to small for this feature
+			if(container_width < CELL_WIDTH + PAD_RIGHT + PAD_LEFT) {
+				clear_width()
+				return
+			}
+
+			const new_size = Math.min(container_width - PAD_LEFT - PAD_RIGHT, max_width)
+
+
+			const left_margin = notebook.getBoundingClientRect().x - editor.getBoundingClientRect().x
+			
+			
+			const max_pad = left_margin - PAD_LEFT
+			const pad = Math.max(0, 
+				Math.min(max_pad, (new_size - CELL_WIDTH) / 2)
+			)
+			
+			cell.style.width = `${new_size}px`
+			cell.style.marginLeft = `${-pad}px`
+		}
+	}
+
+	const ro = new ResizeObserver(set_width)
+	ro.observe(editor)
+	invalidation.then(() => {
+		ro.disconnect()
+		clear_width()
+	})
+</script>©text/html¢op§replace¤path•¬cell_resultsÙ$df8c4387-1a85-4567-8632-cb1da8076ecd¦output¤body¨childrenƒ¥valueÃ¢op§replace¤path”¬cell_resultsÙ$df8c4387-1a85-4567-8632-cb1da8076ecd¦output°persist_js_stateƒ¥valueËAÚoª± T¢op§replace¤path”¬cell_resultsÙ$df8c4387-1a85-4567-8632-cb1da8076ecd¦output²last_run_timestampƒ¥valueÎ¡Û‚¢op§replace¤path“¬cell_resultsÙ$df8c4387-1a85-4567-8632-cb1da8076ecd§runtimeƒ¥value…¤name¨notebook¨subtasksƒ©workspace…¤name©workspace¨subtasks‚¬init_process…¤name¬init_process¨subtasks„¡4…¤name¡4¨subtasks€«finished_atËAÚoª½+€§successÃªstarted_atËAÚoª9UÚ¡1…¤name¡1¨subtasks€«finished_atËAÚoª,¶J§successÃªstarted_atËAÚoªå¬¡2…¤name¡2¨subtasks€«finished_atËAÚoª1ä›§successÃªstarted_atËAÚoª,¶_¡3…¤name¡3¨subtasks€«finished_atËAÚoª9UÅ§successÃªstarted_atËAÚoª1ä¬«finished_atËAÚoª½+Œ§successÃªstarted_atËAÚoªå“®create_process…¤name®create_process¨subtasks‚Ù!Loading notebook boot environment…¤nameÙ!Loading notebook boot environment¨subtasks€«finished_atËAÚoªå~§successÃªstarted_atËAÚoª5+4°Starting process…¤name°Starting process¨subtasks€«finished_atËAÚoª5+§successÃªstarted_atËAÚoª?D»«finished_atËAÚoªåy§successÃªstarted_atËAÚoª?D¢«finished_atËAÚoª½+‘§successÃªstarted_atËAÚoª?D‰£pkg…¤name£pkg¨subtasks„¬instantiate1…¤name¬instantiate1¨subtasks€«finished_atËAÚoªäËÑ§successÃªstarted_atËAÚoªæd¨analysis…¤name¨analysis¨subtasks€«finished_atËAÚoªïÖV§successÃªstarted_atËAÚoªï0ªprecompile…¤nameªprecompile¨subtasks€«finished_atËAÚoª	#œ§successÃªstarted_atËAÚoªäËû§resolve…¤name§resolve¨subtasks€«finished_atËAÚoªæT§successÃªstarted_atËAÚoªf¯Ñ«finished_atËAÚoª	#Ï§successÃªstarted_atËAÚoªï£run…¤name£run¨subtasks‚°resolve_topology…¤name°resolve_topology¨subtasks€«finished_atËAÚoª§³ò§successÃªstarted_atËAÚoª§²ò¨evaluate…¤name¨evaluate¨subtasks¡1…¤name¡1¨subtasks€«finished_atËAÚoª± ¨§successÃªstarted_atËAÚoª¨+4«finished_atËAÚoª±.§successÃªstarted_atËAÚoª§³ö«finished_atËAÚoª±*§successÃªstarted_atËAÚoª§²æ«finished_atÀ§successÀªstarted_atËAÚoªR¸á¢op£add¤path‘«status_treeµids_of_cells_that_ran‘Ù$df8c4387-1a85-4567-8632-cb1da8076ecd
