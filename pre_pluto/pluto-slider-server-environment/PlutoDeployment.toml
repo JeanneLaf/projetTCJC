@@ -1,0 +1,20 @@
+[Export]
+offer_binder = false
+disable_ui = true
+enabled = true
+output_dir = "../../proposition3"
+ignore_cache = [
+    "index.jl",
+]
+
+[SliderServer]
+port = 8000
+host = "0.0.0.0"
+
+[Pluto]
+[Pluto.compiler]
+threads = 2
+
+[Precompute]
+enabled = true
+max_filesize_per_group = 50000000
