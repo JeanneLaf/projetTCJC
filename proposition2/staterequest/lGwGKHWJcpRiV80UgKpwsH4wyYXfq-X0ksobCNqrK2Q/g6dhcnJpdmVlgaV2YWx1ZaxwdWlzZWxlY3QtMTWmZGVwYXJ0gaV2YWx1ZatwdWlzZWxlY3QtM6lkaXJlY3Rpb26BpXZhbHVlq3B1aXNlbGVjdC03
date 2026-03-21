@@ -1,0 +1,230 @@
+‚§patches–ƒ¥value¢op§replace¤path“¬cell_resultsÙ$df8c4387-1a85-4567-8632-cb1da8076ecd¤logsƒ¥value’’Ú*	<div style="display: flex; justify-content: space-between;">
+		<div style="flex: 1; min-width: 450px;">
+			<div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -> Trust Notebook</span><iframe srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    
+    &lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://code.jquery.com/jquery-3.7.1.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css&quot;/&gt;
+    
+            &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; /&gt;
+            &lt;style&gt;
+                #map_b57aa119f5b5816d99b552b745d4c008 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            &lt;/style&gt;
+
+            &lt;style&gt;html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            &lt;/style&gt;
+
+            &lt;style&gt;#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            &lt;/style&gt;
+
+            &lt;script&gt;
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            &lt;/script&gt;
+
+        
+&lt;/head&gt;
+&lt;body&gt;
+    
+    
+            &lt;div class=&quot;folium-map&quot; id=&quot;map_b57aa119f5b5816d99b552b745d4c008&quot; &gt;&lt;/div&gt;
+        
+&lt;/body&gt;
+&lt;script&gt;
+    
+    
+            var map_b57aa119f5b5816d99b552b745d4c008 = L.map(
+                &quot;map_b57aa119f5b5816d99b552b745d4c008&quot;,
+                {
+                    center: [0.0, 0.0],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  &quot;zoom&quot;: 1,
+  &quot;zoomControl&quot;: true,
+  &quot;preferCanvas&quot;: false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_abf63c0ed35c2d11def14a8fd6762cab = L.tileLayer(
+                &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
+                {
+  &quot;minZoom&quot;: 0,
+  &quot;maxZoom&quot;: 19,
+  &quot;maxNativeZoom&quot;: 19,
+  &quot;noWrap&quot;: false,
+  &quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;,
+  &quot;subdomains&quot;: &quot;abc&quot;,
+  &quot;detectRetina&quot;: false,
+  &quot;tms&quot;: false,
+  &quot;opacity&quot;: 1,
+}
+
+            );
+        
+    
+            tile_layer_abf63c0ed35c2d11def14a8fd6762cab.addTo(map_b57aa119f5b5816d99b552b745d4c008);
+        
+    
+            var poly_line_d1b5ce46249178b46577b0838c940589 = L.polyline(
+                [[46.74193, -71.45364], [46.74223, -71.45409], [46.74229, -71.45418], [46.74245, -71.45441], [46.7426, -71.45468], [46.74269, -71.45491], [46.74274, -71.45504], [46.743, -71.45575], [46.74305, -71.45585], [46.74305, -71.45584]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;blue&quot;, &quot;dashArray&quot;: &quot;1, 10&quot;, &quot;dashOffset&quot;: null, &quot;fill&quot;: false, &quot;fillColor&quot;: &quot;blue&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 5}
+            ).addTo(map_b57aa119f5b5816d99b552b745d4c008);
+        
+    
+        var popup_3e68ff931d17f57cd91b18f8242d096e = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_9696c6be53bdc92f7a8fd34bdd65128d = $(`&lt;div id=&quot;html_9696c6be53bdc92f7a8fd34bdd65128d&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;Marche 3 minutes&lt;/div&gt;`)[0];
+                popup_3e68ff931d17f57cd91b18f8242d096e.setContent(html_9696c6be53bdc92f7a8fd34bdd65128d);
+            
+        
+
+        poly_line_d1b5ce46249178b46577b0838c940589.bindPopup(popup_3e68ff931d17f57cd91b18f8242d096e)
+        ;
+
+        
+    
+    
+            var poly_line_c518f3fb4d9fdbb7894f62b12af0e2c5 = L.polyline(
+                [[46.74303, -71.45588], [46.74314, -71.45604], [46.74399, -71.45653], [46.74656, -71.46028], [46.74656, -71.46028], [46.74712, -71.46108], [46.75404, -71.47135], [46.76113, -71.48074], [46.76397, -71.48469], [46.76615, -71.48785], [46.76638, -71.48835], [46.76785, -71.49031], [46.77222, -71.49667], [46.77251, -71.497], [46.77287, -71.49757], [46.77321, -71.49815], [46.7735, -71.49878], [46.77384, -71.4996], [46.77435, -71.50095], [46.77645, -71.50721], [46.77766, -71.51068], [46.77793, -71.51133], [46.77821, -71.512], [46.77886, -71.51313], [46.78118, -71.51646], [46.78361, -71.51997], [46.78437, -71.5211], [46.78476, -71.52183], [46.78503, -71.52246], [46.78528, -71.52317], [46.78552, -71.52392], [46.78573, -71.52511], [46.78586, -71.52633], [46.78589, -71.52998], [46.78597, -71.53117], [46.78613, -71.5324], [46.78625, -71.53298], [46.78647, -71.53374], [46.78678, -71.5347], [46.78697, -71.53517], [46.78746, -71.53612], [46.78802, -71.53698], [46.78865, -71.53784], [46.8014, -71.55454], [46.80431, -71.55838], [46.80784, -71.56369], [46.81113, -71.56889], [46.81465, -71.57382], [46.82165, -71.58333], [46.82696, -71.59072], [46.8278, -71.59234], [46.82796, -71.59276], [46.82834, -71.59358], [46.82888, -71.59459], [46.82931, -71.59531], [46.83135, -71.59821], [46.8337, -71.6015], [46.8355, -71.60412], [46.83566, -71.60421], [46.83784, -71.60725], [46.83849, -71.60806], [46.8387, -71.60833], [46.83915, -71.60876], [46.83975, -71.60927], [46.83978, -71.60938], [46.84009, -71.6085], [46.84009, -71.6085], [46.84014, -71.60837], [46.83978, -71.60938], [46.84124, -71.6108], [46.84147, -71.61108], [46.84446, -71.61527], [46.84442, -71.61546], [46.84415, -71.61598], [46.84406, -71.61619], [46.84406, -71.61619], [46.84406, -71.61619], [46.84334, -71.61761], [46.84424, -71.61885], [46.84482, -71.61961], [46.84502, -71.61939], [46.84505, -71.61935], [46.84505, -71.61935], [46.84527, -71.61914], [46.84539, -71.61903], [46.84547, -71.61889], [46.84618, -71.61752], [46.84658, -71.61797], [46.84903, -71.62037], [46.84989, -71.62119], [46.85012, -71.62132], [46.85032, -71.62137], [46.85054, -71.62132], [46.85083, -71.62116], [46.85101, -71.62096], [46.85111, -71.62076], [46.8512, -71.62056], [46.85149, -71.61974], [46.85162, -71.61957], [46.8518, -71.61939], [46.85261, -71.61878], [46.85469, -71.61694], [46.85469, -71.61694], [46.85683, -71.61504], [46.85725, -71.61451], [46.85807, -71.61325], [46.8584, -71.61288], [46.85892, -71.6124], [46.85967, -71.61343], [46.86029, -71.61433], [46.86029, -71.61433], [46.86146, -71.61603], [46.86152, -71.61612], [46.86152, -71.61612], [46.86198, -71.61673], [46.86235, -71.61711], [46.8628, -71.61749], [46.86322, -71.61776], [46.86343, -71.61787], [46.86379, -71.61801], [46.86529, -71.61842], [46.86829, -71.61946], [46.86829, -71.61946], [46.86923, -71.61977], [46.86966, -71.61993], [46.87079, -71.62024], [46.87093, -71.62024], [46.87111, -71.6202], [46.87129, -71.6201], [46.87146, -71.61993], [46.87156, -71.61974], [46.87171, -71.61923], [46.87183, -71.61827]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#e69800&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: false, &quot;fillColor&quot;: &quot;#e69800&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 5}
+            ).addTo(map_b57aa119f5b5816d99b552b745d4c008);
+        
+    
+        var popup_5c088821c66caac44939137de9af05fd = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_c5b1b40a0f3f95a78dc4408854cc1996 = $(`&lt;div id=&quot;html_c5b1b40a0f3f95a78dc4408854cc1996&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;Bus 13: 18:30-18:58 &lt;/div&gt;`)[0];
+                popup_5c088821c66caac44939137de9af05fd.setContent(html_c5b1b40a0f3f95a78dc4408854cc1996);
+            
+        
+
+        poly_line_c518f3fb4d9fdbb7894f62b12af0e2c5.bindPopup(popup_5c088821c66caac44939137de9af05fd)
+        ;
+
+        
+    
+    
+            map_b57aa119f5b5816d99b552b745d4c008.fitBounds(
+                [[46.7, -71.6], [46.9, -71.4]],
+                {}
+            );
+        
+&lt;/script&gt;
+&lt;/html&gt;" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe></div></div>
+		</div>
+		<div style="flex: 1; min-width: 500px;white-space:pre-line;background-color:#dce8fa;padding-left:20px">
+			<h5>ItinÃ©raire</h5><hr width="230px" style="margin:0px">
+			<u>DÃ©part:</u> <b>18:27</b>   &nbsp;&nbsp;  <u>ArrivÃ©e:</u> <b>18:58</b>
+			DurÃ©e du trajet: <b>30 minutes</b><br>
+			- Marche 3 minutes
+- Bus 13: 18:30-18:58
+	
+		</div>	
+	</div>							
+©text/html’ÚO<script>
+	const PAD_RIGHT = 6 // this is padding-right from <main>
+	const PAD_LEFT = 25 // this is padding-left from <main>
+	const CELL_WIDTH = 700 // this is from the margin calculations of <main>
+	
+	const wrapper = currentScript.closest(".pui-big-wrapper")
+	const cell = wrapper.closest("pluto-cell")
+	const notebook = cell.closest("pluto-notebook")
+	const editor = notebook.closest("pluto-editor")
+	const max_width = 800
+
+	if(wrapper.parentElement.tagName !== "PLUTO-OUTPUT") {
+		console.error("Not directly displayed in the cell. ", wrapper.parentElement.tagName)
+		return
+	}
+
+	if (max_width < CELL_WIDTH) return
+
+	const clear_width = () => {
+		cell.style.width = null
+		cell.style.marginLeft = null
+	}
+
+	let last_width = -1
+	const set_width = (entries) => {
+		for(let e of entries) {
+			
+			const container_width = e.contentRect.width
+
+			// No need to recompute
+			if(last_width === container_width) return
+			last_width = container_width
+
+			// Window to small for this feature
+			if(container_width < CELL_WIDTH + PAD_RIGHT + PAD_LEFT) {
+				clear_width()
+				return
+			}
+
+			const new_size = Math.min(container_width - PAD_LEFT - PAD_RIGHT, max_width)
+
+
+			const left_margin = notebook.getBoundingClientRect().x - editor.getBoundingClientRect().x
+			
+			
+			const max_pad = left_margin - PAD_LEFT
+			const pad = Math.max(0, 
+				Math.min(max_pad, (new_size - CELL_WIDTH) / 2)
+			)
+			
+			cell.style.width = `${new_size}px`
+			cell.style.marginLeft = `${-pad}px`
+		}
+	}
+
+	const ro = new ResizeObserver(set_width)
+	ro.observe(editor)
+	invalidation.then(() => {
+		ro.disconnect()
+		clear_width()
+	})
+</script>©text/html¢op§replace¤path•¬cell_resultsÙ$df8c4387-1a85-4567-8632-cb1da8076ecd¦output¤body¨childrenƒ¥valueÃ¢op§replace¤path”¬cell_resultsÙ$df8c4387-1a85-4567-8632-cb1da8076ecd¦output°persist_js_stateƒ¥valueËAÚoÈlÒp	¢op§replace¤path”¬cell_resultsÙ$df8c4387-1a85-4567-8632-cb1da8076ecd¦output²last_run_timestampƒ¥valueÎâè¢op§replace¤path“¬cell_resultsÙ$df8c4387-1a85-4567-8632-cb1da8076ecd§runtimeƒ¥value…¤name¨notebook¨subtasksƒ©workspace…¤name©workspace¨subtasks‚¬init_process…¤name¬init_process¨subtasks„¡4…¤name¡4¨subtasks€«finished_atËAÚoÈP©\B§successÃªstarted_atËAÚoÈP(Ô¡1…¤name¡1¨subtasks€«finished_atËAÚoÈPŒ~§successÃªstarted_atËAÚoÈOînã¡2…¤name¡2¨subtasks€«finished_atËAÚoÈP˜W§successÃªstarted_atËAÚoÈPŒ“¡3…¤name¡3¨subtasks€«finished_atËAÚoÈP(¿§successÃªstarted_atËAÚoÈP˜g«finished_atËAÚoÈP©\O§successÃªstarted_atËAÚoÈOînÆ®create_process…¤name®create_process¨subtasks‚Ù!Loading notebook boot environment…¤nameÙ!Loading notebook boot environment¨subtasks€«finished_atËAÚoÈOîn¤§successÃªstarted_atËAÚoÈOF^)°Starting process…¤name°Starting process¨subtasks€«finished_atËAÚoÈOF^§successÃªstarted_atËAÚoÈNÅr\«finished_atËAÚoÈOîn §successÃªstarted_atËAÚoÈNÅrK«finished_atËAÚoÈP©\W§successÃªstarted_atËAÚoÈNÅr;£pkg…¤name£pkg¨subtasks„¬instantiate1…¤name¬instantiate1¨subtasks€«finished_atËAÚoÈOFU›§successÃªstarted_atËAÚoÈOF*ú¨analysis…¤name¨analysis¨subtasks€«finished_atËAÚoÈNÅ3"§successÃªstarted_atËAÚoÈNÅ#ªprecompile…¤nameªprecompile¨subtasks€«finished_atËAÚoÈQ
+6“§successÃªstarted_atËAÚoÈOFUÁ§resolve…¤name§resolve¨subtasks€«finished_atËAÚoÈOF*é§successÃªstarted_atËAÚoÈNÅ÷«finished_atËAÚoÈQ
+6Á§successÃªstarted_atËAÚoÈNÅ"û£run…¤name£run¨subtasks‚°resolve_topology…¤name°resolve_topology¨subtasks€«finished_atËAÚoÈlÌö§successÃªstarted_atËAÚoÈlÌõ¨evaluate…¤name¨evaluate¨subtasks¡1…¤name¡1¨subtasks€«finished_atËAÚoÈlÒpi§successÃªstarted_atËAÚoÈlÍmÂ«finished_atËAÚoÈlÒpµ§successÃªstarted_atËAÚoÈlÌö
+«finished_atËAÚoÈlÒp°§successÃªstarted_atËAÚoÈlÌõ«finished_atÀ§successÀªstarted_atËAÚoÈN¢±:¢op£add¤path‘«status_treeµids_of_cells_that_ran‘Ù$df8c4387-1a85-4567-8632-cb1da8076ecd
