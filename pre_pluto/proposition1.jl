@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.20.21
+# v0.20.24
 
 #> [frontmatter]
 #> image = "https://cdn-icons-png.flaticon.com/512/4565/4565023.png"
@@ -113,7 +113,7 @@ function callAPI(depart::Tuple{Float64,Float64}, arrivee::Tuple{Float64,Float64}
 	end
 end
 	
-function parse_itinerary(itinerary::JSON3.Object; MAP_BOUNDS=[(46.75,-71.5),(46.96,-71.4)])
+function parse_itinerary(itinerary::JSON3.Object; MAP_BOUNDS=[(46.7,-71.6),(46.9,-71.4)])
 	flm = pyimport("folium")
 	polyline= pyimport("polyline")
 	
@@ -417,40 +417,67 @@ end
 # ╔═╡ 8674e0ea-0599-4c49-a66e-fd95869587d7
 WideCell(md"""
 !!! info "Proposition 1"
-	##### Ajouts:
+	##### AM:
 	---
-	- **Un** départ du parcours 14 *(ULaval via Shannon)* le matin à **6h15**
-	- **Un** retour du parcours 14 le soir à **16h40**
+	###### Parcours 14 *(ULaval via Shannon)*
+	- **Un** départ à **6h15**
 	```
-	Temps ajouté: 2h30;
-	Distance ajoutée: 86 km
+	Fossambault -> Sainte-Catherine -> Shannon -> Les Saules -> UL
+        6:15             6:32             6:50        7:18     7:32  
+	```
+	###### Parcours 13 *(Saint-Augustin)*
+	- Conserve **deux** départs (sur trois) à **6h** et **7h**
+	```
+	Fossambault -> Sainte-Catherine -> Saint-Augustin
+	   6:02             6:14               6:30    
+	```
+	```
+	Fossambault -> Sainte-Catherine -> Saint-Augustin
+	   6:58             7:10               7:34  
 	```
 	
-	##### Retraits:
+	##### PM:
 	---
-	 - Départ de **6:30** du parcours **13** (- 30 minutes; - 20 km)
-	 - Aller-retour de **6:20** du parcours **33** (-28 minutes; - 14 km) 
-	 - Retour de **17:05** du parcours **13** (- 30 minutes; - 20 km)
-	 - Aller-retour de **16:45** du parcours **33** (-30 minutes; - 14 km) 
-	 - Terminer le parcours **33** de **6:48** et **17:15** à Rue Vanier / Route de la Bravoure (-32 minutes, - 14 km)*
+	###### Parcours 14 *(ULaval via Shannon)*
+    - **Un** retour à **16h40** 
 	```
-	Temps retiré: 2h34;
-	Distance retirée: 82 km
+	 UL -> Les Saules -> Shannon -> Sainte-Catherine -> Fossambault
+    16:40     16:54       17:21          17:42             18:00  
 	```
+	###### Parcours 13 *(Saint-Augustin)*
+    - Conserve **quatre** retours (sur cinq) à 15h30, 16h32, 18h23 et 19h20
+	```
+	Saint-Augustin -> Sainte-Catherine -> Fossambault
+	     15:30             15:50             16:02    
+	```
+	```
+	Saint-Augustin -> Sainte-Catherine -> Fossambault
+	     16:32             17:00             17:17    
+	```
+	```
+	Saint-Augustin -> Sainte-Catherine -> Fossambault
+	     18:23             18:37             18:49    
+	```
+    ```
+	Saint-Augustin -> Sainte-Catherine -> Fossambault
+	     19:20             19:36             19:48    
+	```
+
 	---
-	*Les usagers pourraient transférer vers le nouveau parcours (et ainsi réduire le temps de trajet à l'université de plus de 20 minutes)
 """,max_width=800)
 
 # ╔═╡ 5e217e7f-6506-45b6-b2c8-1566f9449d77
 begin
+	stop_names = [s[:stop_name] for s in trips1[1][:stops]]
+	stop_names[12]*=" (T. les Saules)"
 	prop1_df = DataFrame(
 		no = [s[:rt_stop_id] for s in trips1[1][:stops]],
-		arrêt = [s[:stop_name] for s in trips1[1][:stops]],
+		arrêt = stop_names,
 		AM1 = [Dates.format(Time(t),"HH:MM") for t in trips1[1][:stop_times]])
 
 	prop1_dfr = DataFrame(
 		no = [s[:rt_stop_id] for s in trips1[2][:stops]],
-		arrêt = [s[:stop_name] for s in trips1[2][:stops]],
+		arrêt = stop_names,
 		PM1 = [Dates.format(Time(t),"HH:MM") for t in trips1[2][:stop_times]])
 
 	function show_table(df)
@@ -461,18 +488,48 @@ begin
 	temps_trajets_1 = Time(0)+
 		sum([Time(t[:stop_times][end])-Time(t[:stop_times][1])  for t in trips1])
 	
-	WideCell(details("Horaire proposé",@htl("""
-	<div style="display: flex; gap: 20px; justify-content: space-between;">
-		<div style="flex: 1; min-width: 300px;">
-			<h6>Fossambault -> Sainte-Catherine -> Shannon -> UL</h6>
-			$(show_table(prop1_df))
-		</div>
-		<div style="flex: 1; min-width: 300px;">
-			<h6>UL -> Shannon -> Sainte-Catherine -> Fossambault</h6>
-			$(show_table(prop1_dfr))
-		</div>								
-	</div>
+	WideCell(details("Horaire proposé pour le parcours 14",@htl("""
+		<center><h6>Fossambault -> Sainte-Catherine -> Shannon -> UL</h6></center>
+		$(show_table(prop1_df))
+		<center><h6 style="margin-top:10px;">UL -> Shannon -> Sainte-Catherine -> Fossambault</h6></center>
+		$(show_table(prop1_dfr))
 	<div><b>Temps total des trajets: $(Dates.format(temps_trajets_1,"HhMM"))</b></div>								
+""")),max_width=800)
+end
+
+# ╔═╡ 4e4040dd-95c3-41a8-a978-31909533bd22
+begin
+	noStAug =  vcat([s[:rt_stop_id] for s in trips1[1][:stops]][1:8], ["RTC 6192","RTC 5912"])
+	arretStAug = vcat([s[:stop_name] for s in trips1[1][:stops]][1:8],["Route de Fossambault- de Copenhague (Complexe sportif)","Rue Jean-Juneau (face au 111) (école les Pionniers)"])
+	StAug_df = DataFrame(
+		no =noStAug,
+		arrêt = arretStAug,
+		AM1 = ["6:02","6:03","6:03","6:03","6:03","6:09","6:09","6:14","6:30","6:32"],
+		AM2 = ["6:58","6:59","6:59","6:59","6:59","7:05","7:05","7:10","7:26","7:28"],
+		PM1 = ["16:02","16:03","16:03","16:03","16:03","16:09","16:09","16:14","16:30","16:32"],
+		PM2 = ["17:48","17:49","17:49","17:49","17:49","17:55","17:55","18:00","18:16","18:18"],
+		PM3 = ["18:52","18:53","18:53","18:53","18:53","18:59","18:59","19:04","19:18","19:20"]
+	)
+
+	StAugr_df = DataFrame(
+		no = reverse(noStAug),
+		arrêt = reverse(arretStAug),
+		AM1 = ["6:30","6:32","6:46","6:51","6:51","6:51","6:57","6:57","6:57","6:58"],
+		PM1 = ["15:30","15:32","15:50","15:55","15:55","15:55","16:01","16:01","16:01","16:02"],
+		PM2 = ["16:32","16:34","17:00","17:05","17:05","17:05","17:11","17:11","17:11","17:12"],
+		PM3 = ["18:23","18:25","18:37","18:42","18:42","18:42","18:48","18:48","18:48","18:49"],
+		PM4 = ["19:20","19:22","19:36","19:41","19:41","19:41","19:47","19:47","19:47","19:48",]
+	)
+	
+	WideCell(details("Horaire proposé pour le parcours 13",@htl("""
+
+			<center><h6>Fossambault -> Sainte-Catherine -> Saint-Augustin</h6>
+			$(show_table(StAug_df))
+
+
+			<h6>Saint-Augustin -> Sainte-Catherine -> Fossambault</h6>
+			$(show_table(StAugr_df))</center>															
+					
 """)),max_width=800)
 end
 
@@ -492,6 +549,7 @@ Destinations = Dict(
 	"École Cardinal-Roy" => (46.8183394 , -71.2373547),
 	"École secondaire Roger-Comtois" => (46.8530702, -71.3653757),
 	"École la Camaradière" => (46.8153795 , -71.3141129),
+	"École des Pionniers" => (46.7419340 , -71.4536313),
 
 	"Cégep de Limoilou" =>  (46.8299839 , -71.2279874),
 	"Cégep Ste-Foy" => (46.7861192 , -71.2852852),
@@ -508,6 +566,8 @@ Destinations = Dict(
 	
 	
 )
+	heures = ["Aller (~6h)","Aller (~6h30)","Aller (~7h)",
+			  "Retour (~15h30)","Retour (~16h)","Retour (~18h)","Retour (~19h)"]
 WideCell(@htl(
 	"""
 	<div style="display: flex; gap: 20px; justify-content: space-between;">
@@ -521,7 +581,7 @@ WideCell(@htl(
 		</div>	
 		<div style="flex: 1; min-width: 200px;">
 			<h6>Direction</h6>
-			$(@bind direction Select(["Aller","Retour"]))
+			$(@bind direction Select(heures))
 		</div>	
 	</div>							
 """),max_width=800)
@@ -529,11 +589,26 @@ end
 
 # ╔═╡ df8c4387-1a85-4567-8632-cb1da8076ecd
 begin
-	if direction == "Aller"
+	if direction == "Aller (~6h)"
+		heure="06:00"
+		response = callAPI(Departs[depart],Destinations[arrivee],heure)
+	elseif direction == "Aller (~6h30)"
 		heure="06:15"
 		response = callAPI(Departs[depart],Destinations[arrivee],heure)
-	else
+	elseif direction == "Aller (~7h)"
+		heure="06:50"
+		response = callAPI(Departs[depart],Destinations[arrivee],heure)
+	elseif direction == "Retour (~15h30)"
+		heure = "15:15"
+		response = callAPI(Destinations[arrivee],Departs[depart],heure)
+	elseif direction == "Retour (~16h)"
 		heure = "16:00"
+		response = callAPI(Destinations[arrivee],Departs[depart],heure)
+	elseif direction == "Retour (~18h)"
+		heure = "18:00"
+		response = callAPI(Destinations[arrivee],Departs[depart],heure)
+	elseif direction == "Retour (~19h)"
+		heure = "19:10"
 		response = callAPI(Destinations[arrivee],Departs[depart],heure)
 	end
 	
@@ -566,34 +641,6 @@ begin
 	</div>							
 """),max_width=800)
 end
-
-# ╔═╡ f5fa0756-827c-4b2d-8502-02cab31f8753
-WideCell(html"""
-<style>
-.avantage{
-	background-color:#f1f7f0;
-	padding: 5px 15px;
-}
-.inconvenient{
-	background-color: #f7f0f0;
-	padding: 5px 15px;
-}
-</style>
-<div class="avantage">
-<b>✅ Avantages</b>
-<ul>
-<li> Pas de frais suppplémentaires car le temps et la distance retirés des parcours 13 et 33 sont pratiquement les mêmes ceux du parcours 14 qui serait ajouté
-<li> Maintien d'un parcours direct pour les étudiants de l'université Laval et du cégep Ste-Foy
-</ul></div>
-
-<div class="inconvenient">
-<b>❌ Inconvénients</b>
-<ul>
-<li> Départ très tôt pour les étudiants
-<li> Légère baisse de flexibilité pour les résidents de Shannon (retrait du départ de 6h20)
-</ul>
-</div>
-""",max_width=800)
 
 # ╔═╡ 13d142b5-dfd8-4838-ad97-703101eda29b
 md"""
@@ -1291,10 +1338,10 @@ version = "17.5.0+2"
 # ╔═╡ Cell order:
 # ╟─8674e0ea-0599-4c49-a66e-fd95869587d7
 # ╟─5e217e7f-6506-45b6-b2c8-1566f9449d77
+# ╟─4e4040dd-95c3-41a8-a978-31909533bd22
 # ╟─83f0d075-995b-4e4c-a6a2-5b3a2ada02de
 # ╟─ab1911d8-7e91-473a-93b1-95a3ede00ca8
 # ╟─df8c4387-1a85-4567-8632-cb1da8076ecd
-# ╟─f5fa0756-827c-4b2d-8502-02cab31f8753
 # ╟─13d142b5-dfd8-4838-ad97-703101eda29b
 # ╟─43eb24bf-4357-4a51-ab12-a2fd000b9cf1
 # ╟─00000000-0000-0000-0000-000000000001

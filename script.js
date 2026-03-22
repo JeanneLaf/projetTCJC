@@ -37,5 +37,6 @@
   });
 
   $(window).on('hashchange', loadNotebook);
+
   $(document).ready(loadNotebook);
 })(jQuery);

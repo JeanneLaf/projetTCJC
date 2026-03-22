@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.20.21
+# v0.20.24
 
 #> [frontmatter]
 #> image = "https://cdn-icons-png.flaticon.com/512/4565/4565023.png"
@@ -203,7 +203,7 @@ end
 #################
 
 all_stops = [TCJC["10-07"],TCJC["10-06"],TCJC["10-05"],TCJC["10-04"],TCJC["10-08"],
-             TCJC["10-03"],TCJC["10-02"],TCJC["10-01"],TCJC["30-04"],
+             TCJC["10-03"],TCJC["10-02"],TCJC["10-01"],TCJC["30-04"],TCJC["30-03"],
              TCJC["30-02"],RTC["5600"],RTC["5726"],RTC["1350"],RTC["3576"],RTC["7000"],RTC["4032"],RTC["4749"],RTC["1253"]]
 
 ############
@@ -212,13 +212,13 @@ all_stops = [TCJC["10-07"],TCJC["10-06"],TCJC["10-05"],TCJC["10-04"],TCJC["10-08
 
 # Arrêts normals
 route_14_stops = [TCJC["10-07"],TCJC["10-06"],TCJC["10-05"],TCJC["10-04"],TCJC["10-08"],
-                       TCJC["10-03"],TCJC["10-02"],TCJC["10-01"],TCJC["30-04"],
-                       TCJC["30-02"],RTC["5600"],RTC["4032"],RTC["1350"],RTC["1253"],RTC["3576"],RTC["7000"]]
+                       TCJC["10-03"],TCJC["10-02"],TCJC["10-01"],TCJC["30-04"],TCJC["30-03"],
+                       TCJC["30-02"],RTC["4032"],RTC["1350"],RTC["1253"],RTC["3576"],RTC["7000"]]
 
 # 14 direction peu achalandé n'arrête pas aux halles ni aux Saules
-route_14r_stops = [TCJC["10-07"],TCJC["10-06"],TCJC["10-05"],TCJC["10-04"],TCJC["10-08"], 
-                   TCJC["10-03"],TCJC["10-02"],TCJC["10-01"],TCJC["30-04"],
-                   TCJC["30-02"],RTC["5600"],RTC["4032"],RTC["7000"]] 
+route_14r_stops = [TCJC["10-07"],TCJC["10-06"],TCJC["10-05"],TCJC["10-04"],TCJC["10-08"],
+                   TCJC["10-03"],TCJC["10-02"],TCJC["10-01"],TCJC["30-04"],TCJC["30-03"],
+                   TCJC["30-02"],RTC["4032"],RTC["7000"]]
 
 route_14r_info = Dict(
     :route_id => "TCJC:14",
@@ -245,8 +245,10 @@ route_14_info = Dict(
     :stops => route_14_stops
 )
 
-# Calcul du temps de trajet et distances 
+# Calcul du temps de trajet et distances
 route_14 = merge(route_14_info, compute_route(mx,route_14_stops))
+
+
 
 #############
 #PARCOURS 14X
@@ -254,7 +256,7 @@ route_14 = merge(route_14_info, compute_route(mx,route_14_stops))
 
 # Arrêts
 route_14X_stops = [TCJC["10-07"],TCJC["10-06"],TCJC["10-05"],TCJC["10-04"],TCJC["10-08"],
-                       TCJC["10-03"],TCJC["10-02"],TCJC["10-01"],TCJC["30-04"],
+                       TCJC["10-03"],TCJC["10-02"],TCJC["10-01"],TCJC["30-04"],TCJC["30-03"],
                        TCJC["30-02"],RTC["4032"]]
 
 # Informations pour GTFS
@@ -269,7 +271,7 @@ route_14X_info = Dict(
     :stops => route_14X_stops
 )
 
-# Calcul du temps de trajet et distances 
+# Calcul du temps de trajet et distances
 route_14X = merge(route_14X_info,compute_route(mx,route_14X_stops))
 
 
@@ -346,6 +348,18 @@ retour14AM1 = Dict(
     :all_route => reverse(route_14r[:all_route])
 )
 
+
+retour14AM2 = Dict(
+    :route_id => "TCJC:14",
+    :service_id => "WEEKDAY",
+    :trip_id => "14r_AM2",
+    :trip_headsign => "Express ULaval vers SCJC via Shannon",
+    :shape_id => "ROUTE_14r_rev",
+    :stops => reverse(route_14r_stops),
+    :stop_times => compute_trip(route_14r,Time(9,15),1.0,reverse_direction=true),
+    :all_route => reverse(route_14r[:all_route])
+)
+
 ######### PM ########
 
 # Premier départ 14 PM
@@ -357,7 +371,7 @@ depart14PM1 = Dict(
     :trip_headsign => "Express ULaval vers SCJC via Shannon",
     :shape_id => "ROUTE_14_rev",
     :stops => reverse(route_14_stops),
-    :stop_times => compute_trip(route_14,Time(16,40),2.0,reverse_direction=true),
+    :stop_times => compute_trip(route_14,Time(16,40),1.87,reverse_direction=true),
     :all_route => reverse(route_14[:all_route])
 )
 
@@ -374,6 +388,19 @@ depart14PM2 = Dict(
     :all_route => reverse(route_14[:all_route])
 )
 
+# Premier départ 14X PM
+
+depart14XPM1 = Dict(
+    :route_id => "TCJC:14X",
+    :service_id => "WEEKDAY",
+    :trip_id => "14X_PM1",
+    :trip_headsign => "Express ULaval vers SCJC via Shannon",
+    :shape_id => "ROUTE_14X_rev",
+    :stops => reverse(route_14_stops),
+    :stop_times => compute_trip(route_14X,Time(12,45),1.0,reverse_direction=true),
+    :all_route => reverse(route_14X[:all_route])
+)
+
 # Retour du 14 en PM
 
 retour14PM1 = Dict(
@@ -383,7 +410,7 @@ retour14PM1 = Dict(
     :trip_headsign => "Express SCJC vers ULaval via Shannon",
     :shape_id => "ROUTE_14r",
     :stops => route_14r_stops,
-    :stop_times => compute_trip(route_14r,Time(18,00),1.1),
+    :stop_times => compute_trip(route_14r,Time(18,00),1.0),
     :all_route => route_14r[:all_route]
 )
 
@@ -394,10 +421,9 @@ trips1 = [depart14AM1, depart14PM1];
 trips2 = [depart14AM1, retour14AM1, depart14AM2, depart14PM1, retour14PM1, depart14PM2];
 
 # Proposition 3
-trips3 = [depart14AM1, depart14XAM1, depart14XAM2];
+trips3 = [depart14AM1, retour14AM1, depart14AM2, retour14AM2, depart14XAM2,
+          depart14XPM1, depart14PM1, retour14PM1, depart14PM2];
 
-# Proposition 4
-trips4 = [depart14AM1, depart14AM2, depart14XAM2];
 
 "Bip-Bop Bip-Bop 🤖"
 end
@@ -406,6 +432,28 @@ end
 WideCell(html"""
 <h2> Proposition de modifications à l'offre de service du TCJC prévu au 1er avril pour Fossambault-sur-le-lac, Sainte-Catherine-de-la-Jacques-Cartier et Shannon</h2>
 """,max_width=800)
+
+# ╔═╡ c70e54be-50aa-43eb-894d-f626a7844ee6
+WideCell(md"""### Parcours prévu au 1er avril 2026""", max_width=800)
+
+# ╔═╡ 5fc761a3-c205-4616-8ee0-c3c609be2975
+begin
+	heure="06:50"
+	response = callAPI((TCJC["10-07"][:stop_lat],TCJC["10-07"][:stop_lon]),
+					   (RTC["5912"][:stop_lat],RTC["5912"][:stop_lon]),heure)
+
+	itinerary = parse_itinerary(response,MAP_BOUNDS=[(46.7,-71.6),(46.9,-71.4)])
+	map = itinerary[:map]
+
+	WideCell(@htl(
+	"""<div class="titre_parcours">Parcours 13<br> <p style="font-size: 14px;font-weight:normal">Fossambault -> Sainte-Catherine -> Saint-Augustin</p></div> 
+			$(map)
+					
+"""),max_width=800)
+end
+
+# ╔═╡ 9aa1e839-79ad-46a3-a647-54e8c8b508a6
+WideCell(md"""### Parcours que nous aimerions ajouter""", max_width=800)
 
 # ╔═╡ b942dc52-cf40-4c62-a74d-96fbe19e5df4
 begin
@@ -478,7 +526,7 @@ WideCell(
 		.titre_parcours{
 			background-color: #02547a;
 			color: white;
-			font-size: 15px;
+			font-size: 18px;
 			padding: 5px;
 		 	text-align:center;
 			font-weight: bold;
@@ -493,25 +541,19 @@ WideCell(
 			padding: 5px;
 			border-left: 8px solid #d6d5ce;
 			border-radius: 5px;
-		 	float:right;
-		 	width:360px;
-		}
-		.map {
-		 	float: left;
-		 	width: 360px;
+		 	margin-top:10px;
 		}
 		  ul li { margin-bottom: 15px; }
 	</style>
 		 
-	<div class="map">
-		 <div class="titre_parcours">Parcours 14<br> <p style="font-size: 11px;font-weight:normal">Fossambault -> Sainte-Catherine -> Shannon -> les Saules -> UL</p></div> 
+
+		 <div class="titre_parcours">Parcours 14<br> <p style="font-size: 14px;font-weight:normal">Fossambault -> Sainte-Catherine -> Shannon -> les Saules -> UL</p></div> 
 		 $(m)
 		 <div class="temps_distance">Longueur du trajet: $(longueur14) km</div>
 
-		 <div class="titre_parcours">Parcours 14X<br> <p style="font-size: 11px;font-weight:normal">Fossambault -> Sainte-Catherine -> Shannon -> Route Sainte-Geneviève</p></div>
+		 <div class="titre_parcours">Parcours 14X<br> <p style="font-size: 14px;font-weight:normal">Fossambault -> Sainte-Catherine -> Shannon -> Route Sainte-Geneviève</p></div>
 		 $(m2)
 		 <div class="temps_distance">Longueur du trajet: $(longueur14X) km</div>
-	</div>
 	<div class="pourquoi">
 		<h5>Pourquoi ces parcours</h5>
 		 <hr>
@@ -520,8 +562,8 @@ WideCell(
 		<li> Le 14 permet de maintenir un <b>parcours direct pour les étudiants de l'université Laval et du cégep Ste-Foy</b>. 
 		 
 		<li> <b>Transferts efficaces</b> à Ste-Geneviève et aux Saules pour se rendre aux autres destinations (Écoles secondaires, centre-ville, limoilou, etc.) 
-		<li> Connexion avec les <b>métrobus 803 et 804</b>
-		<li> <b>Voies réservés pour les bus</b> sur la 573 à partir de la route Ste-Geneviève et sur la 740
+		<li> Connexion avec les <b>métrobus 803, 804 et 805</b>
+		<li> <b>Voies réservés pour les bus</b> sur Henri-IV sud (573) à partir de la route Ste-Geneviève et sur Robert-Bourassa (740)
 		<li> Dessert <b>3 municipalités</b> donc les frais supplémentaires pourront être partagés entre ces trois municipalités
 		</ul>
 	</div>
@@ -533,6 +575,37 @@ end
 md"""
 **CODE**
 """
+
+# ╔═╡ 895973ef-3dcb-49fc-ad2d-b5bb7edd5e5b
+begin
+	function _compute_route(mx::MapData,parcours::Array)
+    """
+    Computes the time and distance between stops
+    """
+    all_route = []
+
+    for i in 2:length(parcours)
+        route, distance, route_time = fastest_route(mx,get_node(mx,parcours[i-1]),get_node(mx,parcours[i]))
+		if parcours[i-1][:rt_stop_id]=="XX"
+			all_route=vcat(all_route,route[1:2])
+		else
+       	    all_route=vcat(all_route,route)
+		end
+    end  
+
+    return all_route
+end
+	# modifications au tracé pour forcer le passage sur la 40
+	route_14_modif = [TCJC["10-07"],TCJC["10-06"],TCJC["10-05"],TCJC["10-04"],TCJC["10-08"],
+						   TCJC["10-03"],TCJC["10-02"],TCJC["10-01"],TCJC["30-04"],TCJC["30-03"],
+						   TCJC["30-02"],RTC["4032"],
+						   Dict(:rt_stop_id => "XXX", :stop_lat =>  46.8181977 , :stop_lon => -71.3513177),
+					  	   Dict(:rt_stop_id => "XX",:stop_lat =>  46.8164450, :stop_lon => -71.3256676),
+						   RTC["1350"],RTC["1253"],RTC["3576"],RTC["7000"]]
+	
+	route_14[:all_route]=_compute_route(mx,route_14_modif)
+	"Bip-Bip-Boup"
+end
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
@@ -1224,8 +1297,12 @@ version = "17.5.0+2"
 
 # ╔═╡ Cell order:
 # ╟─49fe8bd6-41c7-46ca-96bb-bf001ec4c4f6
-# ╠═b942dc52-cf40-4c62-a74d-96fbe19e5df4
+# ╟─c70e54be-50aa-43eb-894d-f626a7844ee6
+# ╟─5fc761a3-c205-4616-8ee0-c3c609be2975
+# ╟─9aa1e839-79ad-46a3-a647-54e8c8b508a6
+# ╟─b942dc52-cf40-4c62-a74d-96fbe19e5df4
 # ╟─13d142b5-dfd8-4838-ad97-703101eda29b
 # ╟─43eb24bf-4357-4a51-ab12-a2fd000b9cf1
+# ╟─895973ef-3dcb-49fc-ad2d-b5bb7edd5e5b
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002

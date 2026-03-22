@@ -150,3 +150,32 @@ ul.main-menu li a.active {
 .show {
   display:block;
 }
+
+#rotate-warning {
+    display: none; /* Controlled by media query */
+    position: fixed;
+    width: 100vw;
+    z-index: 9999;
+
+    /* Add these to center everything */
+    display: flex;            /* Use flexbox */
+    flex-direction: column;   /* Stack icon/text vertically */
+    justify-content: center;  /* Center vertically */
+    align-items: center;      /* Center horizontally */
+    text-align: center;       /* Center text lines */
+}
+
+/* Ensure it only shows in portrait */
+@media (orientation: landscape) {
+    #rotate-warning {
+        display: none !important;
+    }
+}
+
+@media (orientation: portrait) {
+    #rotate-warning {
+        display: flex; /* Matches the flex setting above */
+    }
+}
+
+
