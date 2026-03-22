@@ -152,13 +152,18 @@ ul.main-menu li a.active {
 }
 
 #rotate-warning {
-    display: none; /* Controlled by media query */
-    position: fixed;
-    width: 100vw;
-    z-index: 9999;
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black */
+    backdrop-filter: blur(5px);          /* The magic blur effect */
+    -webkit-backdrop-filter: blur(5px);  /* Required for Safari support */
 
-    /* Add these to center everything */
-    display: flex;            /* Use flexbox */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    display: none;
+    align-items: center;
     flex-direction: column;   /* Stack icon/text vertically */
     justify-content: center;  /* Center vertically */
     align-items: center;      /* Center horizontally */
@@ -177,5 +182,39 @@ ul.main-menu li a.active {
         display: flex; /* Matches the flex setting above */
     }
 }
+
+/* 1. Define the animation keyframes */
+@keyframes rotate-phone {
+    0% { transform: rotate(0deg); }
+    30% { transform: rotate(90deg); } /* Rotate to landscape */
+    70% { transform: rotate(90deg); } /* Pause in landscape */
+    100% { transform: rotate(0deg); } /* Return to portrait */
+}
+
+/* 2. Style the icon and apply the animation */
+.phone-icon {
+    width: 40px;
+    height: 70px;
+    border: 3px solid #f5c2ab;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    position: relative;
+    /* Apply the animation: name, duration, timing, repetition */
+    animation: rotate-phone 2s ease-in-out infinite;
+}
+
+/* Add a small 'home button' dot to make it look like a phone */
+.phone-icon::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5px;
+    height: 5px;
+    background: #f5c2ab;
+    border-radius: 50%;
+}
+
 
 
