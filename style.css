@@ -152,16 +152,8 @@ ul.main-menu li a.active {
 }
 
 #rotate-warning {
-    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black */
     backdrop-filter: blur(5px);          /* The magic blur effect */
     -webkit-backdrop-filter: blur(5px);  /* Required for Safari support */
-
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 9999;
     display: none;
     align-items: center;
     flex-direction: column;   /* Stack icon/text vertically */
