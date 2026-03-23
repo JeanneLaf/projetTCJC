@@ -1,10 +1,10 @@
 ### A Pluto.jl notebook ###
-# v0.20.24
+# v0.20.21
 
 #> [frontmatter]
 #> image = "https://cdn-icons-png.flaticon.com/512/4565/4565023.png"
 #> language = "fr-CA"
-#> title = "Proposition de modification au TCJC"
+#> title = "Projet TCJC"
 #> date = "2026-03-11"
 #> 
 #>     [[frontmatter.author]]
