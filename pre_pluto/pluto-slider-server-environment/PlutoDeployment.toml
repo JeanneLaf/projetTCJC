@@ -2,7 +2,7 @@
 offer_binder = false
 disable_ui = true
 enabled = true
-output_dir = "../../proposition3"
+output_dir = "../../proposition1"
 ignore_cache = [
     "index.jl",
 ]

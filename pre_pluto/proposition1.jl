@@ -216,7 +216,7 @@ end
 
 all_stops = [TCJC["10-07"],TCJC["10-06"],TCJC["10-05"],TCJC["10-04"],TCJC["10-08"],
              TCJC["10-03"],TCJC["10-02"],TCJC["10-01"],TCJC["30-04"],
-             TCJC["30-02"],RTC["5600"],RTC["5726"],RTC["1350"],RTC["3576"],RTC["7000"],RTC["4032"],RTC["4749"],RTC["1253"]]
+             TCJC["30-02"],RTC["5600"],RTC["5726"],RTC["1350"],RTC["3576"],RTC["7000"],RTC["4032"],RTC["4749"],RTC["1253"],RTC["5717"]]
 
 ############
 #PARCOURS 14
@@ -225,7 +225,7 @@ all_stops = [TCJC["10-07"],TCJC["10-06"],TCJC["10-05"],TCJC["10-04"],TCJC["10-08
 # Arrêts normals
 route_14_stops = [TCJC["10-07"],TCJC["10-06"],TCJC["10-05"],TCJC["10-04"],TCJC["10-08"],
                        TCJC["10-03"],TCJC["10-02"],TCJC["10-01"],TCJC["30-04"],
-                       TCJC["30-02"],RTC["4032"],RTC["1350"],RTC["1253"],RTC["3576"],RTC["7000"]]
+                       TCJC["30-02"],RTC["4032"],RTC["5717"],RTC["1253"],RTC["3576"],RTC["7000"]]
 
 # 14 direction peu achalandé n'arrête pas aux halles ni aux Saules
 route_14r_stops = [TCJC["10-07"],TCJC["10-06"],TCJC["10-05"],TCJC["10-04"],TCJC["10-08"], 
@@ -414,6 +414,194 @@ trips4 = [depart14AM1, depart14AM2, depart14XAM2];
 "Bip-Bop Bip-Bop 🤖"
 end
 
+# ╔═╡ ab1911d8-7e91-473a-93b1-95a3ede00ca8
+begin
+using AbstractPlutoDingetjes
+Departs = Dict(
+	"Sainte-Catherine (IGA)" => (TCJC["10-01"][:stop_lat], TCJC["10-01"][:stop_lon]),
+	"Fossambault (Chapelle)" => (TCJC["10-07"][:stop_lat], TCJC["10-07"][:stop_lon]),
+	"Shannon (rue de la station)" => (TCJC["30-04"][:stop_lat], TCJC["30-04"][:stop_lon])
+)
+Destinations = Dict(
+	# --- Écoles Secondaires ---
+	"École secondaire de Neufchâtel" => (
+		latlon = (46.8366998, -71.3479287),
+		type = "Écoles secondaires"
+	),
+	"École Cardinal-Roy" => (
+		latlon = (46.8183394, -71.2373547),
+		type = "Écoles secondaires"
+	),
+	"École secondaire Roger-Comtois" => (
+		latlon = (46.8530702, -71.3653757),
+		type = "Écoles secondaires"
+	),
+	"École la Camaradière" => (
+		latlon = (46.8153795, -71.3141129),
+		type = "Écoles secondaires"
+	),
+	"École des Pionniers" => (
+		latlon = (46.7419340, -71.4536313),
+		type = "Écoles secondaires"
+	),
+	"Polyvalente de l'Ancienne-Lorette" => (
+		latlon = (46.8094378, -71.3628248),
+		type = "Écoles secondaires"
+	),
+	"Séminaire St-François" => (
+		latlon = (46.7348870, -71.3917567),
+		type = "Écoles secondaires"
+	),
+
+	# --- Enseignement Supérieur ---
+	"Cégep de Limoilou (campus de Limoilou)" => (
+		latlon = (46.8299839, -71.2279874),
+		type = "Enseignement supérieur"
+	),
+	"Cégep de Limoilou (campus de Charlesbourg)" => (
+		latlon = (RTC["3248"][:stop_lat], RTC["3248"][:stop_lon]),
+		type = "Enseignement supérieur"
+	),
+	"Cégep Ste-Foy" => (
+		latlon = (46.7861192, -71.2852852),
+		type = "Enseignement supérieur"
+	),
+	"Cégep Garneau" => (
+		latlon = (46.7927311, -71.2636307),
+		type = "Enseignement supérieur"
+	),
+	"Cégep St. Lawrence" => (
+		latlon = (46.7877803, -71.2817766),
+		type = "Enseignement supérieur"
+	),
+	"Collège Mérici" => (
+		latlon = (46.7951275, -71.2320162),
+		type = "Enseignement supérieur"
+	),
+	"CNDF" => (
+		latlon = (46.7376597, -71.4000530),
+		type = "Enseignement supérieur"
+	),
+	"Université Laval" => (
+		latlon = (RTC["7000"][:stop_lat], RTC["7000"][:stop_lon]),
+		type = "Enseignement supérieur"
+	),
+
+	# --- Milieux Professionnels ---
+	"Colline parlementaire" => (
+		latlon = (46.8079579, -71.2149318),
+		type = "Milieux professionnels"
+	),
+	"Place Laurier" => (
+		latlon = (46.7699603, -71.2885902),
+		type = "Milieux professionnels"
+	),
+	"Hôpital l'Enfant-Jésus" => (
+		latlon = (46.8381477, -71.2288389),
+		type = "Milieux professionnels"
+	),
+	"Galeries de la Capitale" => (
+		latlon = (46.8306465, -71.2966811),
+		type = "Milieux professionnels"
+	),
+	"Saint-Roch (Charest/Dorchester)" => (
+		latlon = (RTC["1263"][:stop_lat], RTC["1263"][:stop_lon]),
+		type = "Milieux professionnels"
+	),
+	"Parc Technologique" => (
+		latlon = (46.7941770, -71.3093252),
+		type = "Milieux professionnels"
+	),
+	"Complexe Sportif de Saint-Augustin" => (
+		latlon = (46.7468206, -71.4607026),
+		type = "Milieux professionnels"
+	),
+
+	# --- Formation Professionnelle ---
+	"CFP de Neufchâtel" => (
+		latlon = (46.8366998, -71.3479287),
+		type = "Formation professionnelle"
+	),
+	"CFP Maurice-Barbeau" => (
+		latlon =  (46.7758035 , -71.2951517),
+		type = "Formation professionnelle"
+	),
+	"CFP Wilbrod-Bhérer" => (
+		latlon = (46.8183394, -71.2373547),
+		type = "Formation professionnelle"
+	),
+	"CFP de Québec" => (
+		latlon = (46.8190982 , -71.2498028),
+		type = "Formation professionnelle"
+	),
+	"CFP de Limoilou" => (
+		latlon =  (46.8343604 , -71.2320063),
+		type = "Formation professionnelle"
+	),
+	"CFP Marie-Rollet" => (
+		latlon = (46.7669904 , -71.2947874),
+		type = "Formation professionnelle"
+	),
+	"ÉMOICQ" => (
+		latlon = ( 46.8050641 , -71.2533985),
+		type = "Formation professionnelle"
+	)
+)
+
+	# 1. Group the names for the HTML display
+    grouped_destinations = Dict()
+    for (name, data) in Destinations
+        push!(get!(grouped_destinations, data.type, []), name)
+    end
+
+    # 2. Define a custom widget type to hold our logic
+    struct GroupedSelect
+        data::Dict
+    end
+
+    # 3. Tell Pluto how to show the widget
+    function Base.show(io::IO, m::MIME"text/html", gs::GroupedSelect)
+        show(io, m, @htl("""
+        <select>
+            $([
+                @htl("<optgroup label=$type>
+                    $([@htl("<option value=$name>$name</option>") for name in sort(names)])
+                </optgroup>") 
+                for (type, names) in sort(collect(gs.data))
+            ])
+        </select>
+        """))
+    end
+
+    # 4. CRITICAL: Tell PlutoSliderServer what values to precompute
+    AbstractPlutoDingetjes.Bonds.possible_values(gs::GroupedSelect) = collect(keys(Destinations))
+    
+
+    # 5. Bind the custom widget
+    sel_destination = @bind destination GroupedSelect(grouped_destinations)
+	
+	heures = ["Aller (~6h)","Aller (~6h30)","Aller (~7h)",
+			  "Retour (~15h30)","Retour (~16h)","Retour (~18h)","Retour (~19h)"]
+	
+
+	
+WideCell(@htl(
+	"""
+	<div style="display: flex; gap: 20px; justify-content: space-between;">
+		<div style="flex: 1; min-width: 200px;">
+			<h6>Point de départ</h6>
+			$(@bind depart Select([p for p in keys(Departs)]))
+			<h6>Destination</h6>
+			$(sel_destination)
+		</div>
+		<div style="flex: 1; min-width: 200px;">
+			<h6>Direction/heure</h6>
+			$(@bind direction Select(heures))
+		</div>	
+	</div>							
+"""),max_width=800)
+end
+
 # ╔═╡ 8674e0ea-0599-4c49-a66e-fd95869587d7
 WideCell(md"""
 !!! info "Proposition 1"
@@ -469,7 +657,6 @@ WideCell(md"""
 # ╔═╡ 5e217e7f-6506-45b6-b2c8-1566f9449d77
 begin
 	stop_names = [s[:stop_name] for s in trips1[1][:stops]]
-	stop_names[12]*=" (T. les Saules)"
 	prop1_df = DataFrame(
 		no = [s[:rt_stop_id] for s in trips1[1][:stops]],
 		arrêt = stop_names,
@@ -477,7 +664,7 @@ begin
 
 	prop1_dfr = DataFrame(
 		no = [s[:rt_stop_id] for s in trips1[2][:stops]],
-		arrêt = stop_names,
+		arrêt = reverse(stop_names),
 		PM1 = [Dates.format(Time(t),"HH:MM") for t in trips1[2][:stop_times]])
 
 	function show_table(df)
@@ -537,79 +724,29 @@ end
 WideCell(md"""#### Itinéraires 
 		 ---""",max_width=800)
 
-# ╔═╡ ab1911d8-7e91-473a-93b1-95a3ede00ca8
-begin
-Departs = Dict(
-	"Sainte-Catherine (IGA)" => (TCJC["10-01"][:stop_lat], TCJC["10-01"][:stop_lon]),
-	"Fossambault (Chapelle)" => (TCJC["10-07"][:stop_lat], TCJC["10-07"][:stop_lon]),
-	"Shannon (rue de la station)" => (TCJC["30-04"][:stop_lat], TCJC["30-04"][:stop_lon])
-)
-Destinations = Dict(
-	"École secondaire de Neufchatel" => ( 46.8366998 , -71.3479287),
-	"École Cardinal-Roy" => (46.8183394 , -71.2373547),
-	"École secondaire Roger-Comtois" => (46.8530702, -71.3653757),
-	"École la Camaradière" => (46.8153795 , -71.3141129),
-	"École des Pionniers" => (46.7419340 , -71.4536313),
-
-	"Cégep de Limoilou" =>  (46.8299839 , -71.2279874),
-	"Cégep Ste-Foy" => (46.7861192 , -71.2852852),
-	"Cégep Garneau" => (46.7927311 , -71.2636307),
-	"Cégep St. Lawrence" => (46.7877803 , -71.2817766),
-	"Collège Mérici" =>( 46.7951275 , -71.2320162),
-	"Université Laval" => (RTC["7000"][:stop_lat], RTC["7000"][:stop_lon]),
-
-	"Colline parlementaire" => (46.8079579 , -71.2149318),
-	"Place Laurier" => ( 46.7699603 , -71.2885902),
-	"Hopital l'enfant-jésus" => (46.8381477 , -71.2288389),
-	"Galeries de la capitale" => (46.8306465 , -71.2966811),
-	"Saint-Roch (coin Charest/Dorchester)" => (RTC["1263"][:stop_lat], RTC["1263"][:stop_lon])
-	
-	
-)
-	heures = ["Aller (~6h)","Aller (~6h30)","Aller (~7h)",
-			  "Retour (~15h30)","Retour (~16h)","Retour (~18h)","Retour (~19h)"]
-WideCell(@htl(
-	"""
-	<div style="display: flex; gap: 20px; justify-content: space-between;">
-		<div style="flex: 1; min-width: 200px;">
-			<h6>Point de départ</h6>
-			$(@bind depart Select([p for p in keys(Departs)]))
-		</div>
-		<div style="flex: 1; min-width: 200px;">
-			<h6>Destination</h6>
-			$(@bind arrivee Select([p for p in keys(Destinations)]))
-		</div>	
-		<div style="flex: 1; min-width: 200px;">
-			<h6>Direction</h6>
-			$(@bind direction Select(heures))
-		</div>	
-	</div>							
-"""),max_width=800)
-end
-
 # ╔═╡ df8c4387-1a85-4567-8632-cb1da8076ecd
 begin
 	if direction == "Aller (~6h)"
 		heure="06:00"
-		response = callAPI(Departs[depart],Destinations[arrivee],heure)
+		response = callAPI(Departs[depart],Destinations[destination].latlon,heure)
 	elseif direction == "Aller (~6h30)"
 		heure="06:15"
-		response = callAPI(Departs[depart],Destinations[arrivee],heure)
+		response = callAPI(Departs[depart],Destinations[destination].latlon,heure)
 	elseif direction == "Aller (~7h)"
 		heure="06:50"
-		response = callAPI(Departs[depart],Destinations[arrivee],heure)
+		response = callAPI(Departs[depart],Destinations[destination].latlon,heure)
 	elseif direction == "Retour (~15h30)"
 		heure = "15:15"
-		response = callAPI(Destinations[arrivee],Departs[depart],heure)
+		response = callAPI(Destinations[destination].latlon,Departs[depart],heure)
 	elseif direction == "Retour (~16h)"
 		heure = "16:00"
-		response = callAPI(Destinations[arrivee],Departs[depart],heure)
+		response = callAPI(Destinations[destination].latlon,Departs[depart],heure)
 	elseif direction == "Retour (~18h)"
 		heure = "18:00"
-		response = callAPI(Destinations[arrivee],Departs[depart],heure)
+		response = callAPI(Destinations[destination].latlon,Departs[depart],heure)
 	elseif direction == "Retour (~19h)"
 		heure = "19:10"
-		response = callAPI(Destinations[arrivee],Departs[depart],heure)
+		response = callAPI(Destinations[destination].latlon,Departs[depart],heure)
 	end
 	
 	if response==0
@@ -626,13 +763,22 @@ begin
 		h_depart = itinerary[:h_depart]
 		h_arrivee = itinerary[:h_arrivee]
 	end
+
+	Ancienne_Lorette = ["Polyvalente de l'Ancienne-Lorette", "Parc Technologique"]
+	StAug = ["Séminaire St-François","CNDF"]
+
+	if destination in Ancienne_Lorette 
+		text*="\n *Également possible de prendre le flexibus à partir du terminus les Saules*"
+	elseif destination in StAug
+		text*="\n *Également possible de prendre le flexibus de Saint-Augustin à partir de l'école des Pionniers*"
+	end
 	WideCell(@htl(
 	"""
 	<div style="display: flex; justify-content: space-between;">
 		<div style="flex: 1; min-width: 450px;">
 			$(map)
 		</div>
-		<div style="flex: 1; min-width: 500px;white-space:pre-line;background-color:#dce8fa;padding-left:20px">
+		<div style="flex: 1; width: 300px;white-space:pre-line;background-color:#dce8fa;padding-left:20px">
 			<h5>Itinéraire</h5><hr width="230px" style="margin:0px">
 			<u>Départ:</u> <b>$(h_depart)</b>   &nbsp;&nbsp;  <u>Arrivée:</u> <b>$(h_arrivee)</b>
 			Durée du trajet: <b>$(duree)</b><br>
@@ -650,6 +796,7 @@ md"""
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
 [deps]
+AbstractPlutoDingetjes = "6e696c72-6542-2067-7265-42206c756150"
 CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
 DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
 Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
@@ -663,6 +810,7 @@ Printf = "de0858da-6303-5e67-8744-51eddeeeb8d7"
 PyCall = "438e738f-606a-5dbb-bf0a-cddfbfd45ab0"
 
 [compat]
+AbstractPlutoDingetjes = "~1.3.2"
 CSV = "~0.10.15"
 DataFrames = "~1.8.1"
 HTTP = "~1.11.0"
@@ -680,7 +828,7 @@ PLUTO_MANIFEST_TOML_CONTENTS = """
 
 julia_version = "1.12.1"
 manifest_format = "2.0"
-project_hash = "cf7f8821a7dde9b88b1c79dcea9364ee592fb20f"
+project_hash = "dae22f1b1eafea16e092ed36e72a89516bcd25f1"
 
 [[deps.AbstractPlutoDingetjes]]
 deps = ["Pkg"]

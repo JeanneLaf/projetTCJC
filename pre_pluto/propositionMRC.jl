@@ -13,18 +13,6 @@
 using Markdown
 using InteractiveUtils
 
-# This Pluto notebook uses @bind for interactivity. When running this notebook outside of Pluto, the following 'mock version' of @bind gives bound variables a default value (instead of an error).
-macro bind(def, element)
-    #! format: off
-    return quote
-        local iv = try Base.loaded_modules[Base.PkgId(Base.UUID("6e696c72-6542-2067-7265-42206c756150"), "AbstractPlutoDingetjes")].Bonds.initial_value catch; b -> missing; end
-        local el = $(esc(element))
-        global $(esc(def)) = Core.applicable(Base.get, el) ? Base.get(el) : iv(el)
-        el
-    end
-    #! format: on
-end
-
 # ╔═╡ 43eb24bf-4357-4a51-ab12-a2fd000b9cf1
 begin
 using OpenStreetMapX, Dates, PyCall, Printf, DataFrames,PrettyTables, JSON3, HTTP,HypertextLiteral,PlutoUI, CSV
@@ -210,13 +198,13 @@ function compute_trip(route::Dict, start_time::Dates.Time, tf::Float64; reverse_
     end
 end
 
+
 #################
 #ARRÊTS DU RÉSEAU
 #################
 
 all_stops = [TCJC["10-07"],TCJC["10-06"],TCJC["10-05"],TCJC["10-04"],TCJC["10-08"],
-             TCJC["10-03"],TCJC["10-02"],TCJC["10-01"],TCJC["30-04"],
-             TCJC["30-02"],RTC["5600"],RTC["5726"],RTC["1350"],RTC["3576"],RTC["7000"],RTC["4032"],RTC["4749"],RTC["1253"],RTC["5717"]]
+             TCJC["10-03"],TCJC["10-02"],TCJC["10-01"],TCJC["30-04"],            TCJC["30-02"],RTC["5600"],RTC["5726"],RTC["1350"],RTC["3576"],RTC["7000"],RTC["7002"],RTC["4032"],RTC["4749"],RTC["1253"],RTC["5717"],RTC["1409"]]
 
 ############
 #PARCOURS 14
@@ -225,12 +213,12 @@ all_stops = [TCJC["10-07"],TCJC["10-06"],TCJC["10-05"],TCJC["10-04"],TCJC["10-08
 # Arrêts normals
 route_14_stops = [TCJC["10-07"],TCJC["10-06"],TCJC["10-05"],TCJC["10-04"],TCJC["10-08"],
                        TCJC["10-03"],TCJC["10-02"],TCJC["10-01"],TCJC["30-04"],
-                       TCJC["30-02"],RTC["4032"],RTC["5717"],RTC["1253"],RTC["3576"],RTC["7000"]]
+                       TCJC["30-02"],RTC["4032"],RTC["5717"],RTC["1253"],RTC["7000"],RTC["7002"],RTC["1409"]]
 
 # 14 direction peu achalandé n'arrête pas aux halles ni aux Saules
 route_14r_stops = [TCJC["10-07"],TCJC["10-06"],TCJC["10-05"],TCJC["10-04"],TCJC["10-08"], 
                    TCJC["10-03"],TCJC["10-02"],TCJC["10-01"],TCJC["30-04"],
-                   TCJC["30-02"],RTC["4032"],RTC["7000"]] 
+                   TCJC["30-02"],RTC["4032"],RTC["1409"]] 
 
 route_14r_info = Dict(
     :route_id => "TCJC:14",
@@ -315,7 +303,7 @@ depart14AM2 = Dict(
     :trip_headsign => "Express SCJC vers ULaval via Shannon",
     :shape_id => "SHAPE_14",
     :stops => route_14_stops,
-    :stop_times => compute_trip(route_14,Time(8,20),1.3),
+    :stop_times => compute_trip(route_14,Time(7,56),1.2),
     :all_route => route_14[:all_route]
 )
 
@@ -341,7 +329,7 @@ depart14XAM2 = Dict(
     :trip_headsign => "SCJC vers Val-Bélair via Shannon",
     :shape_id => "SHAPE_14X",
     :stops => route_14X_stops,
-    :stop_times => compute_trip(route_14X,Time(10,40),1.1),
+    :stop_times => compute_trip(route_14X,Time(10,45),1.0),
     :all_route => route_14[:all_route]
 )
 
@@ -358,6 +346,18 @@ retour14AM1 = Dict(
     :all_route => reverse(route_14r[:all_route])
 )
 
+
+retour14AM2 = Dict(
+    :route_id => "TCJC:14",
+    :service_id => "WEEKDAY",
+    :trip_id => "14r_AM2",
+    :trip_headsign => "Express ULaval vers SCJC via Shannon",
+    :shape_id => "ROUTE_14r_rev",
+    :stops => reverse(route_14_stops),
+    :stop_times => compute_trip(route_14,Time(10,00),0.98,reverse_direction=true),
+    :all_route => reverse(route_14[:all_route])
+)
+
 ######### PM ########
 
 # Premier départ 14 PM
@@ -369,7 +369,7 @@ depart14PM1 = Dict(
     :trip_headsign => "Express ULaval vers SCJC via Shannon",
     :shape_id => "ROUTE_14_rev",
     :stops => reverse(route_14_stops),
-    :stop_times => compute_trip(route_14,Time(16,40),1.87,reverse_direction=true),
+    :stop_times => compute_trip(route_14,Time(16,35),1.8,reverse_direction=true),
     :all_route => reverse(route_14[:all_route])
 )
 
@@ -382,8 +382,47 @@ depart14PM2 = Dict(
     :trip_headsign => "Express ULaval vers SCJC via Shannon",
     :shape_id => "ROUTE_14_rev",
     :stops => reverse(route_14_stops),
-    :stop_times => compute_trip(route_14,Time(18,40),1.2,reverse_direction=true),
+    :stop_times => compute_trip(route_14,Time(18,35),1.2,reverse_direction=true),
     :all_route => reverse(route_14[:all_route])
+)
+
+# Premier départ 14X PM
+
+depart14XPM1 = Dict(
+    :route_id => "TCJC:14X",
+    :service_id => "WEEKDAY",
+    :trip_id => "14X_PM1",
+    :trip_headsign => "Val-Bélair vers SCJC via Shannon",
+    :shape_id => "ROUTE_14X_rev",
+    :stops => reverse(route_14X_stops),
+    :stop_times => compute_trip(route_14X,Time(12,45),1.0,reverse_direction=true),
+    :all_route => reverse(route_14X[:all_route])
+)
+
+# Deuxième départ 14X PM
+
+depart14XPM2 = Dict(
+    :route_id => "TCJC:14X",
+    :service_id => "WEEKDAY",
+    :trip_id => "14X_PM2",
+    :trip_headsign => "Val-Bélair vers SCJC via Shannon",
+    :shape_id => "ROUTE_14X_rev",
+    :stops => reverse(route_14X_stops),
+    :stop_times => compute_trip(route_14X,Time(20,05),1.0,reverse_direction=true),
+    :all_route => reverse(route_14X[:all_route])
+)
+
+# Troisième départ 14X PM
+
+depart14XPM3 = Dict(
+    :route_id => "TCJC:14X",
+    :service_id => "WEEKDAY",
+    :trip_id => "14X_PM3",
+    :trip_headsign => "Val-Bélair vers SCJC via Shannon",
+    :shape_id => "ROUTE_14X_rev",
+    :stops => reverse(route_14X_stops),
+    :stop_times => compute_trip(route_14X,Time(21,05),1.0,reverse_direction=true),
+    :all_route => reverse(route_14X[:all_route])
 )
 
 # Retour du 14 en PM
@@ -395,8 +434,34 @@ retour14PM1 = Dict(
     :trip_headsign => "Express SCJC vers ULaval via Shannon",
     :shape_id => "ROUTE_14r",
     :stops => route_14r_stops,
-    :stop_times => compute_trip(route_14r,Time(18,00),1.0),
+    :stop_times => compute_trip(route_14r,Time(17,56),1.0),
     :all_route => route_14r[:all_route]
+)
+
+# Deuxième retour du 14x en PM
+
+retour14PM2 = Dict(
+    :route_id => "TCJC:14",
+    :service_id => "WEEKDAY",
+    :trip_id => "14Xr_PM1",
+    :trip_headsign => "Val-Bélair vers SCJC via Shannon",
+    :shape_id => "ROUTE_14X",
+    :stops => route_14X_stops,
+    :stop_times => compute_trip(route_14X,Time(19,35),1.0),
+    :all_route => route_14X[:all_route]
+)
+
+# Troisième retour du 14x en PM
+
+retour14PM3 = Dict(
+    :route_id => "TCJC:14X",
+    :service_id => "WEEKDAY",
+    :trip_id => "14Xr_PM2",
+    :trip_headsign => "Val-Bélair vers SCJC via Shannon",
+    :shape_id => "ROUTE_14X",
+    :stops => route_14X_stops,
+    :stop_times => compute_trip(route_14X,Time(20,35),1.0),
+    :all_route => route_14X[:all_route]
 )
 
 # Proposition 1
@@ -406,214 +471,34 @@ trips1 = [depart14AM1, depart14PM1];
 trips2 = [depart14AM1, retour14AM1, depart14AM2, depart14PM1, retour14PM1, depart14PM2];
 
 # Proposition 3
-trips3 = [depart14AM1, depart14XAM1, depart14XAM2];
+trips3 = [depart14AM1, retour14AM1, depart14AM2, retour14AM2, depart14XAM2,
+          depart14XPM1, depart14PM1, retour14PM1, depart14PM2];
 
-# Proposition 4
-trips4 = [depart14AM1, depart14AM2, depart14XAM2];
 
-"Bip-Bop Bib-Bop 🤖"
+"Code pour calculer les trajets Bip-Bop Bip-Bop 🤖"
 end
 
-# ╔═╡ ab1911d8-7e91-473a-93b1-95a3ede00ca8
-begin
-using AbstractPlutoDingetjes
-Departs = Dict(
-	"Sainte-Catherine (IGA)" => (TCJC["10-01"][:stop_lat], TCJC["10-01"][:stop_lon]),
-	"Fossambault (Chapelle)" => (TCJC["10-07"][:stop_lat], TCJC["10-07"][:stop_lon]),
-	"Shannon (rue de la station)" => (TCJC["30-04"][:stop_lat], TCJC["30-04"][:stop_lon])
-)
-Destinations = Dict(
-	# --- Écoles Secondaires ---
-	"École secondaire de Neufchâtel" => (
-		latlon = (46.8366998, -71.3479287),
-		type = "Écoles secondaires"
-	),
-	"École Cardinal-Roy" => (
-		latlon = (46.8183394, -71.2373547),
-		type = "Écoles secondaires"
-	),
-	"École secondaire Roger-Comtois" => (
-		latlon = (46.8530702, -71.3653757),
-		type = "Écoles secondaires"
-	),
-	"École la Camaradière" => (
-		latlon = (46.8153795, -71.3141129),
-		type = "Écoles secondaires"
-	),
-	"École des Pionniers" => (
-		latlon = (46.7419340, -71.4536313),
-		type = "Écoles secondaires"
-	),
-	"Polyvalente de l'Ancienne-Lorette" => (
-		latlon = (46.8094378, -71.3628248),
-		type = "Écoles secondaires"
-	),
-	"Séminaire St-François" => (
-		latlon = (46.7348870, -71.3917567),
-		type = "Écoles secondaires"
-	),
-
-	# --- Enseignement Supérieur ---
-	"Cégep de Limoilou (campus de Limoilou)" => (
-		latlon = (46.8299839, -71.2279874),
-		type = "Enseignement supérieur"
-	),
-	"Cégep de Limoilou (campus de Charlesbourg)" => (
-		latlon = (RTC["3248"][:stop_lat], RTC["3248"][:stop_lon]),
-		type = "Enseignement supérieur"
-	),
-	"Cégep Ste-Foy" => (
-		latlon = (46.7861192, -71.2852852),
-		type = "Enseignement supérieur"
-	),
-	"Cégep Garneau" => (
-		latlon = (46.7927311, -71.2636307),
-		type = "Enseignement supérieur"
-	),
-	"Cégep St. Lawrence" => (
-		latlon = (46.7877803, -71.2817766),
-		type = "Enseignement supérieur"
-	),
-	"Collège Mérici" => (
-		latlon = (46.7951275, -71.2320162),
-		type = "Enseignement supérieur"
-	),
-	"CNDF" => (
-		latlon = (46.7376597, -71.4000530),
-		type = "Enseignement supérieur"
-	),
-	"Université Laval" => (
-		latlon = (RTC["7000"][:stop_lat], RTC["7000"][:stop_lon]),
-		type = "Enseignement supérieur"
-	),
-
-	# --- Milieux Professionnels ---
-	"Colline parlementaire" => (
-		latlon = (46.8079579, -71.2149318),
-		type = "Milieux professionnels"
-	),
-	"Place Laurier" => (
-		latlon = (46.7699603, -71.2885902),
-		type = "Milieux professionnels"
-	),
-	"Hôpital l'Enfant-Jésus" => (
-		latlon = (46.8381477, -71.2288389),
-		type = "Milieux professionnels"
-	),
-	"Galeries de la Capitale" => (
-		latlon = (46.8306465, -71.2966811),
-		type = "Milieux professionnels"
-	),
-	"Saint-Roch (Charest/Dorchester)" => (
-		latlon = (RTC["1263"][:stop_lat], RTC["1263"][:stop_lon]),
-		type = "Milieux professionnels"
-	),
-	"Parc Technologique" => (
-		latlon = (46.7941770, -71.3093252),
-		type = "Milieux professionnels"
-	),
-	"Complexe Sportif de Saint-Augustin" => (
-		latlon = (46.7468206, -71.4607026),
-		type = "Milieux professionnels"
-	),
-
-	# --- Formation Professionnelle ---
-	"CFP de Neufchâtel" => (
-		latlon = (46.8366998, -71.3479287),
-		type = "Formation professionnelle"
-	),
-	"CFP Maurice-Barbeau" => (
-		latlon =  (46.7758035 , -71.2951517),
-		type = "Formation professionnelle"
-	),
-	"CFP Wilbrod-Bhérer" => (
-		latlon = (46.8183394, -71.2373547),
-		type = "Formation professionnelle"
-	),
-	"CFP de Québec" => (
-		latlon = (46.8190982 , -71.2498028),
-		type = "Formation professionnelle"
-	),
-	"CFP de Limoilou" => (
-		latlon =  (46.8343604 , -71.2320063),
-		type = "Formation professionnelle"
-	),
-	"CFP Marie-Rollet" => (
-		latlon = (46.7669904 , -71.2947874),
-		type = "Formation professionnelle"
-	),
-	"ÉMOICQ" => (
-		latlon = ( 46.8050641 , -71.2533985),
-		type = "Formation professionnelle"
-	)
-)
-
-	# 1. Group the names for the HTML display
-    grouped_destinations = Dict()
-    for (name, data) in Destinations
-        push!(get!(grouped_destinations, data.type, []), name)
-    end
-
-    # 2. Define a custom widget type to hold our logic
-    struct GroupedSelect
-        data::Dict
-    end
-
-    # 3. Tell Pluto how to show the widget
-    function Base.show(io::IO, m::MIME"text/html", gs::GroupedSelect)
-        show(io, m, @htl("""
-        <select>
-            $([
-                @htl("<optgroup label=$type>
-                    $([@htl("<option value=$name>$name</option>") for name in sort(names)])
-                </optgroup>")
-                for (type, names) in sort(collect(gs.data))
-            ])
-        </select>
-        """))
-    end
-
-    # 4. CRITICAL: Tell PlutoSliderServer what values to precompute
-    AbstractPlutoDingetjes.Bonds.possible_values(gs::GroupedSelect) = collect(keys(Destinations))
-
-
-    # 5. Bind the custom widget
-    sel_destination = @bind destination GroupedSelect(grouped_destinations)
-
-	heures = ["Aller (~6h)","Aller (~6h30)","Aller (~7h)","Aller (~8h30)",
-			  "Retour (~15h30)","Retour (~16h)","Retour (~18h)","Retour (~19h)"]
-WideCell(@htl(
-	"""
-	<div style="display: flex; gap: 20px; justify-content: space-between;">
-		<div style="flex: 1; min-width: 200px;">
-			<h6>Point de départ</h6>
-			$(@bind depart Select([p for p in keys(Departs)]))
-
-			<h6>Destination</h6>
-			$(sel_destination)
-		</div>
-		<div style="flex: 1; min-width: 200px;">
-			<h6>Direction/heure</h6>
-			$(@bind direction Select(heures))
-		</div>	
-	</div>							
-"""),max_width=800)
-end
 
 # ╔═╡ 8674e0ea-0599-4c49-a66e-fd95869587d7
 WideCell(md"""
-!!! info "Proposition 2"
-	##### AM:
+!!! info "Proposition de trajets en semaine"
+	##### AM
 	---
 	###### Parcours 14 *(ULaval via Shannon)*
-	- **Deux** départs à **6h15** et **8h20**
+	- **Deux** départs à **6h15** et **8h**
 	```
 	Fossambault -> Sainte-Catherine -> Shannon -> Les Saules -> UL
         6:15             6:32             6:50        7:18     7:32  
 	```
 	```
 	Fossambault -> Sainte-Catherine -> Shannon -> Les Saules -> UL
-        8:20             8:32             8:45        9:05     9:15  
+        7:56             8:07            8:20        8:38      8:47  
+	```
+	###### Parcours 14X *(Route Ste-Geneviève)*
+	- **Deux** départs à **8h20** et **10h40**
+	```
+	Fossambault -> Sainte-Catherine -> Shannon -> Ste-Geneviève
+        10:40            10:49           11:00        11:11 
 	```
 	###### Parcours 13 *(Saint-Augustin)*
 	- Conserve **deux** départs (sur trois) à **6h** et **7h**
@@ -625,9 +510,11 @@ WideCell(md"""
 	Fossambault -> Sainte-Catherine -> Saint-Augustin
 	   6:58             7:10               7:34  
 	```
-	
-	##### PM:
+
+		 
+	##### PM
 	---
+
 	###### Parcours 14 *(ULaval via Shannon)*
     - **Deux** retours à **16h40** et **18h40**
 	```
@@ -638,8 +525,22 @@ WideCell(md"""
 	 UL -> Les Saules -> Shannon -> Sainte-Catherine -> Fossambault
     18:40     18:47       19:06          19:20             19:30  
 	```
+	###### Parcours 14X (Route Ste-Geneviève)
+	- **Trois** retours à **12h45**, **20h05** et **21h05**
+    ```
+	 Ste-Geneviève -> Shannon -> Sainte-Catherine -> Fossambault
+         12:45         12:57          13:09             13:20 
+	```
+	```
+	 Ste-Geneviève -> Shannon -> Sainte-Catherine -> Fossambault
+         20:05         20:15          20:25             20:35 
+	```
+	```
+	 Ste-Geneviève -> Shannon -> Sainte-Catherine -> Fossambault
+         21:05         21:15          21:25             21:35 
+	```
 	###### Parcours 13 *(Saint-Augustin)*
-    - Conserve **quatre** retours (sur cinq) à 15h30, 16h32, 18h23 et 19h20
+    - Conserve **deux** retours (sur cinq) à **15h30** et **16h32**
 	```
 	Saint-Augustin -> Sainte-Catherine -> Fossambault
 	     15:30             15:50             16:02    
@@ -648,179 +549,244 @@ WideCell(md"""
 	Saint-Augustin -> Sainte-Catherine -> Fossambault
 	     16:32             17:00             17:17    
 	```
-	```
-	Saint-Augustin -> Sainte-Catherine -> Fossambault
-	     18:23             18:37             18:49    
-	```
-    ```
-	Saint-Augustin -> Sainte-Catherine -> Fossambault
-	     19:20             19:36             19:48    
-	```
-
 	---
+	**KILOMÉTRAGE TOTAL DE LA PROPOSITION** `580 km`
+		 
+	**HEURES TRAVAILLÉES PAR LES CHAUFFEURS** `7 x 3h = 21h`
+		 
+	----
+	###### Actuellement (Parcours 12 et 33)
+	 - kilométrage `380 km`
+	 - blocs chauffeurs `7 x 3h`
+	---
+	###### Au 1er avril (Parcours 13 et 33)
+	 - kilométrage `372 km`
+	 - blocs chauffeurs `7 x 3h`
 """,max_width=800)
 
 # ╔═╡ 5e217e7f-6506-45b6-b2c8-1566f9449d77
 begin
-	stop_names = [s[:stop_name] for s in trips1[1][:stops]]
 	
-	retourPM= [Dates.format(Time(t),"HH:MM") for t in trips2[5][:stop_times]]
-	splice!(retourPM, 12:1,["--","--","--"])
+	stop_names = [s[:stop_name] for s in trips1[1][:stops]]
+	stop_names[end] *= " (cégep Garneau)"
+	
+	retourPM1= [Dates.format(Time(t),"HH:MM") for t in retour14PM1[:stop_times]]
+	splice!(retourPM1, 12:1,["--" for i in 1:4])
+
+	retourPM2= [Dates.format(Time(t),"HH:MM") for t in retour14PM2[:stop_times]]
+	retourPM2 =vcat(retourPM2, ["--" for i in 1:5])
+
+	retourPM3= [Dates.format(Time(t),"HH:MM") for t in retour14PM3[:stop_times]]
+	retourPM3= vcat(retourPM3, ["--" for i in 1:5])
+
+	AM3 = [Dates.format(Time(t),"HH:MM") for t in depart14XAM2[:stop_times]]
+	AM3 = vcat(AM3,["--" for i in 1:5])
 	
 	prop2_df = DataFrame(
-		no = [s[:rt_stop_id] for s in trips2[1][:stops]],
+		no = [s[:rt_stop_id] for s in trips3[1][:stops]],
 		arrêt = stop_names,
-		AM1 = [Dates.format(Time(t),"HH:MM") for t in trips2[1][:stop_times]],
-		AM2 = [Dates.format(Time(t),"HH:MM") for t in trips2[3][:stop_times]],
-		retourPM = retourPM
+		_14_AM1 = [Dates.format(Time(t),"HH:MM") for t in depart14AM1[:stop_times]],
+		_14_AM2 = [Dates.format(Time(t),"HH:MM") for t in depart14AM2[:stop_times]],
+		_14X_AM = AM3,
+		_14_rPM1 = retourPM1,
+		_14X_rPM2 = retourPM2,
+		_14X_rPM3 = retourPM3
 	)
 	
-	retourAM= [Dates.format(Time(t),"HH:MM") for t in trips2[2][:stop_times]]
-	splice!(retourAM, 2:1,["--","--","--"])
+	retourAM1= [Dates.format(Time(t),"HH:MM") for t in retour14AM1[:stop_times]]
+	splice!(retourAM1, 2:1,["--" for i in 1:2])
+	
+	retourAM2= [Dates.format(Time(t),"HH:MM") for t in retour14AM2[:stop_times]]
+	
+	PM1 = [Dates.format(Time(t),"HH:MM") for t in depart14XPM1[:stop_times]]
+	PM1 = vcat(["--" for i in 1:5], PM1)
+
+	PM4 = [Dates.format(Time(t),"HH:MM") for t in depart14XPM2[:stop_times]]
+	PM4 = vcat(["--" for i in 1:5], PM4)
+
+	PM5 = [Dates.format(Time(t),"HH:MM") for t in depart14XPM3[:stop_times]]
+	PM5 = vcat(["--" for i in 1:5], PM5)
+	
 	prop2_dfr = DataFrame(
 		no = [s[:rt_stop_id] for s in trips1[2][:stops]],
 		arrêt = reverse(stop_names),
-		retourAM = retourAM,
-		PM1 = [Dates.format(Time(t),"HH:MM") for t in trips2[4][:stop_times]],
-		PM2 = [Dates.format(Time(t),"HH:MM") for t in trips2[6][:stop_times]]
+		retourAM = retourAM2,
+		PM1 = PM1,
+		PM2 = [Dates.format(Time(t),"HH:MM") for t in depart14PM1[:stop_times]],
+		PM3 = [Dates.format(Time(t),"HH:MM") for t in depart14PM2[:stop_times]],
+		PM4 = PM4,
+		PM5 = PM5
 	)
 
-	function show_table(df)
+	function show_table(df,titres;show_column_headers=true)
     	iobuf = IOBuffer()
-    	show(iobuf, MIME("text/html"), df; eltypes=false,show_row_number=false,summary=false)
+    	show(iobuf, MIME("text/html"), df; eltypes=false,show_row_number=false,summary=false,column_labels=titres,show_column_labels=show_column_headers)
     	HTML(String(take!(iobuf)))
 	end
 	temps_trajets = Time(0)+
 		sum([Time(t[:stop_times][end])-Time(t[:stop_times][1])  for t in trips2])
 	
-	WideCell(details("Horaire proposé pour le parcours 14",@htl("""
+	WideCell(@htl("""
+	<style>
+		.horaire14 {
+		  background-color:#eeebf2;
+		  padding-top:10px;
+		  margin-top:10px;
+		}
+	</style>
 	
+	<div><center><h5>Horaire complet proposé pour le parcours 14</h5></center><hr>
+		<div class="horaire14">
 			<center><h6>Fossambault -> Sainte-Catherine -> Shannon -> UL</h6></center>
-			$(show_table(prop2_df))
-		
-			<center><h6 style="margin-top:10px;">UL -> Shannon -> Sainte-Catherine -> Fossambault</h6></center>
-			$(show_table(prop2_dfr))
-
-	<div><b>Temps total des trajets: $(Dates.format(temps_trajets,"HhMM"))</b></div>								
-""")),max_width=800)
+			$(show_table(prop2_df,["no","arrêt","14","14","14X","14","14X","14X"]))
+		</div>
+		<div class="horaire14">
+			<center><h6>UL -> Shannon -> Sainte-Catherine -> Fossambault</h6></center>
+			$(show_table(prop2_dfr,["no","arrêt","14","14X","14","14","14X","14X"]))
+		</div>								
+	</div>	
+	<b>Distance parcourue: $(2*(3*43+3*28)) km</b>
+"""),max_width=800)
 end
 
-# ╔═╡ aba8d4be-818a-4e55-b12e-95f1a4b3265e
+# ╔═╡ e8bf50f0-a5c1-4ba4-b3f7-d25d78920ae2
 begin
 	noStAug =  vcat([s[:rt_stop_id] for s in trips1[1][:stops]][1:8], ["RTC 6192","RTC 5912"])
 	arretStAug = vcat([s[:stop_name] for s in trips1[1][:stops]][1:8],["Route de Fossambault- de Copenhague (Complexe sportif)","Rue Jean-Juneau (face au 111) (école les Pionniers)"])
 	StAug_df = DataFrame(
 		no =noStAug,
 		arrêt = arretStAug,
-		AM1 = ["6:02","6:03","6:03","6:03","6:03","6:09","6:09","6:14","6:30","6:32"],
+		AM1 = ["6:02","6:03","6:03","6:03","6:03","6:09","6:09","6:14","6:28","6:30"],
 		AM2 = ["6:58","6:59","6:59","6:59","6:59","7:05","7:05","7:10","7:26","7:28"],
-		PM1 = ["16:02","16:03","16:03","16:03","16:03","16:09","16:09","16:14","16:30","16:32"],
-		PM2 = ["17:48","17:49","17:49","17:49","17:49","17:55","17:55","18:00","18:16","18:18"],
-		PM3 = ["18:52","18:53","18:53","18:53","18:53","18:59","18:59","19:04","19:18","19:20"]
+		PM1 = ["16:02","16:03","16:03","16:03","16:03","16:09","16:09","16:14","16:30","16:32"]
 	)
 
 	StAugr_df = DataFrame(
 		no = reverse(noStAug),
 		arrêt = reverse(arretStAug),
 		AM1 = ["6:30","6:32","6:46","6:51","6:51","6:51","6:57","6:57","6:57","6:58"],
+		AM2 = ["7:28","7:30","7:44","7:49","7:49","7:49","7:55","7:55","7:55","7:56"],
 		PM1 = ["15:30","15:32","15:50","15:55","15:55","15:55","16:01","16:01","16:01","16:02"],
-		PM2 = ["16:32","16:34","17:00","17:05","17:05","17:05","17:11","17:11","17:11","17:12"],
-		PM3 = ["18:23","18:25","18:37","18:42","18:42","18:42","18:48","18:48","18:48","18:49"],
-		PM4 = ["19:20","19:22","19:36","19:41","19:41","19:41","19:47","19:47","19:47","19:48",]
+		PM2 = ["16:32","16:34","17:00","17:05","17:05","17:05","17:11","17:11","17:11","17:12"]
 	)
 	
-	WideCell(details("Horaire proposé pour le parcours 13",@htl("""
-
+	WideCell(@htl("""
+		<style>
+			.horaire13 {
+			  background-color:#faeecd;
+			  padding-top:10px;
+			  margin-top:10px;
+			}
+		</style>	  
+		<center><h5>Horaire complet proposé pour le parcours 13</h5></center><hr>
+		<div class="horaire13">
 			<center><h6>Fossambault -> Sainte-Catherine -> Saint-Augustin</h6>
-			$(show_table(StAug_df))
-
-
-			<h6>Saint-Augustin -> Sainte-Catherine -> Fossambault</h6>
-			$(show_table(StAugr_df))</center>															
-					
-""")),max_width=800)
-end
-
-# ╔═╡ 83f0d075-995b-4e4c-a6a2-5b3a2ada02de
-WideCell(md"""#### Itinéraires 
-		 ---""",max_width=800)
-
-# ╔═╡ df8c4387-1a85-4567-8632-cb1da8076ecd
-begin
-	if direction == "Aller (~6h)"
-		heure="06:00"
-		response = callAPI(Departs[depart],Destinations[destination].latlon,heure)
-	elseif direction == "Aller (~6h30)"
-		heure="06:15"
-		response = callAPI(Departs[depart],Destinations[destination].latlon,heure)
-	elseif direction == "Aller (~7h)"
-		heure="06:50"
-		response = callAPI(Departs[depart],Destinations[destination].latlon,heure)
-	elseif direction == "Aller (~8h30)"
-		heure="08:15"
-		response = callAPI(Departs[depart],Destinations[destination].latlon,heure)
-	elseif direction == "Retour (~15h30)"
-		heure = "15:15"
-		response = callAPI(Destinations[destination].latlon,Departs[depart],heure)
-	elseif direction == "Retour (~16h)"
-		heure = "16:00"
-		response = callAPI(Destinations[destination].latlon,Departs[depart],heure)
-	elseif direction == "Retour (~18h)"
-		heure = "18:00"
-		response = callAPI(Destinations[destination].latlon,Departs[depart],heure)
-	elseif direction == "Retour (~19h)"
-		heure = "19:10"
-		response = callAPI(Destinations[destination].latlon,Departs[depart],heure)
-	end
-	
-	if response==0
-		text ="Aucun itinéraire trouvée"
-		map = nothing
-		duree = nothing
-		h_depart = nothing
-		h_arrivee = nothing
-	else
-		itinerary = parse_itinerary(response,MAP_BOUNDS=[(46.7,-71.6),(46.9,-71.4)])
-		text = itinerary[:text]
-		map = itinerary[:map]
-		duree = itinerary[:duree]
-		h_depart = itinerary[:h_depart]
-		h_arrivee = itinerary[:h_arrivee]
-	end
-
-	Ancienne_Lorette = ["Polyvalente de l'Ancienne-Lorette", "Parc Technologique"]
-	StAug = ["Séminaire St-François","CNDF"]
-
-	if destination in Ancienne_Lorette
-		text*="\n *Également possible de prendre le flexibus à partir du terminus les Saules*"
-	elseif destination in StAug
-		text*="\n *Également possible de prendre le flexibus de Saint-Augustin à partir de l'école des Pionniers*"
-	end
-	WideCell(@htl(
-	"""
-	<div style="display: flex; justify-content: space-between;">
-		<div style="flex: 1; min-width: 450px;">
-			$(map)
+			$(show_table(StAug_df,["no","arrêt","13","13","13"]))
 		</div>
-		<div style="flex: 1; width: 300px;white-space:pre-line;background-color:#dce8fa;padding-left:20px">
-			<h5>Itinéraire</h5><hr width="230px" style="margin:0px">
-			<u>Départ:</u> <b>$(h_depart)</b>   &nbsp;&nbsp;  <u>Arrivée:</u> <b>$(h_arrivee)</b>
-			Durée du trajet: <b>$(duree)</b><br>
-			$(text)	
-		</div>	
-	</div>							
+		<div class="horaire13">
+		<center><h6>Saint-Augustin -> Sainte-Catherine -> Fossambault</h6>
+		$(show_table(StAugr_df,["no","arrêt","13","13","13","13"]))</center>	
+		</div>
+		<b>Distance parcourue: $(7*22) km</b>
+					
 """),max_width=800)
 end
 
-# ╔═╡ 13d142b5-dfd8-4838-ad97-703101eda29b
-md"""
-**CODE**
-"""
+# ╔═╡ b25931ed-eda4-4d36-9365-db7c602895bd
+begin
+	chauffeur1_df = DataFrame([
+	   ["5:30-6:00",
+		"6:00-7:56",
+		"7:56-8:50",
+		"9:00-10:00",
+		"10:00-11:11",
+		"11:11-12:45",
+		"12:45-13:14",
+		"13:14-14:00"],
+		["Maison -> Fossambault","Parcours 13","Parcours 14","Pause","Parcours 14","Pause/Diner","Parcours 14","Retour maison"]
+	],:auto)
+
+	chauffeur2_df1 = DataFrame([
+	   ["5:45-6:15",
+		"6:15-7:40",
+		"7:40-8:10"],
+		["Maison -> Fossambault","Parcours 14","Retour maison"]
+	],:auto)
+
+	chauffeur2_df2 = DataFrame([
+	   ["15:00-15:30",
+		"15:30-17:12",
+		"17:12-17:45"],
+		["Maison -> Fossambault","Parcours 13","Retour maison"]
+	],:auto)
+
+	chauffeur2_df2 = DataFrame([
+	   ["15:00-15:30",
+		"15:30-17:12",
+		"17:12-17:45"],
+		["Maison -> Fossambault","Parcours 13","Retour maison"]
+	],:auto)
+
+	chauffeur3_df = DataFrame([
+	   ["16:10-16:40",
+		"16:40-21:34",
+		"21:34-22:10"],
+		["Maison -> Fossambault","Parcours 14","Retour maison"]
+	],:auto)
+
+
+	WideCell(@htl("""
+	<style>
+    .horaire_chauffeurs {
+        background-color: white;
+        padding-top: 10px;
+        margin: 5px;
+		margin-bottom: 25px;
+        flex: 1;
+        width: 250px;
+        height: 260px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    } 
+</style>
+
+<center><h5>Horaire des chauffeurs</h5></center><hr>
+
+<div style="display:flex">
+    <!-- Chauffeur 1 -->
+    <div class="horaire_chauffeurs">
+        <h6>Chauffeur 1</h6>
+        $(show_table(chauffeur1_df,["Heure","Parcours désservi"],show_column_headers=false))
+        <div style="margin-top:auto; font-weight:bold;">Temps: 3 x 3h = 9h</div>
+    </div>
+
+    <!-- Chauffeur 2 -->
+    <div class="horaire_chauffeurs">
+        <h6>Chauffeur 2</h6>
+        $(show_table(chauffeur2_df1,["Heure","Parcours désservi"],show_column_headers=false))
+        <div style="margin-top:auto;">
+			 $(show_table(chauffeur2_df2,["Heure","Parcours désservi"],show_column_headers=false))
+			<p style="font-weight:bold">Temps: 2 x 3h = 6h</p>
+		</div>
+    </div>
+
+    <!-- Chauffeur 3 -->
+    <div class="horaire_chauffeurs">
+        <h6>Chauffeur 3</h6>
+        <div style="margin-top:auto;">
+		  $(show_table(chauffeur3_df,["Heure","Parcours désservi"],show_column_headers=false))
+		  <p style="font-weight:bold">Temps: 2 x 3h = 6h</p>		  
+		</div>
+    </div>
+</div>
+				
+	"""),max_width=800)
+end
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
 [deps]
-AbstractPlutoDingetjes = "6e696c72-6542-2067-7265-42206c756150"
 CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
 DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
 Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
@@ -834,7 +800,6 @@ Printf = "de0858da-6303-5e67-8744-51eddeeeb8d7"
 PyCall = "438e738f-606a-5dbb-bf0a-cddfbfd45ab0"
 
 [compat]
-AbstractPlutoDingetjes = "~1.3.2"
 CSV = "~0.10.15"
 DataFrames = "~1.8.1"
 HTTP = "~1.11.0"
@@ -852,7 +817,7 @@ PLUTO_MANIFEST_TOML_CONTENTS = """
 
 julia_version = "1.12.1"
 manifest_format = "2.0"
-project_hash = "dae22f1b1eafea16e092ed36e72a89516bcd25f1"
+project_hash = "cf7f8821a7dde9b88b1c79dcea9364ee592fb20f"
 
 [[deps.AbstractPlutoDingetjes]]
 deps = ["Pkg"]
@@ -1510,11 +1475,8 @@ version = "17.5.0+2"
 # ╔═╡ Cell order:
 # ╟─8674e0ea-0599-4c49-a66e-fd95869587d7
 # ╟─5e217e7f-6506-45b6-b2c8-1566f9449d77
-# ╟─aba8d4be-818a-4e55-b12e-95f1a4b3265e
-# ╟─83f0d075-995b-4e4c-a6a2-5b3a2ada02de
-# ╟─ab1911d8-7e91-473a-93b1-95a3ede00ca8
-# ╟─df8c4387-1a85-4567-8632-cb1da8076ecd
-# ╟─13d142b5-dfd8-4838-ad97-703101eda29b
+# ╟─e8bf50f0-a5c1-4ba4-b3f7-d25d78920ae2
+# ╟─b25931ed-eda4-4d36-9365-db7c602895bd
 # ╟─43eb24bf-4357-4a51-ab12-a2fd000b9cf1
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
