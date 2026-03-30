@@ -1,7 +1,7 @@
 (function ($) {
   function loadNotebook() {
-    var hash = location.hash || '#accueil';
-    var region = hash.slice(1) + "/" + hash.slice(1);
+    var hash = location.hash || '#carte';
+    var region = "www/" + hash.slice(1);
     var $iframe = $('#content-frame');
 
     // 1. Set the new source
