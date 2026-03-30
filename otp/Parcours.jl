@@ -184,9 +184,13 @@ end
 #################
 #ARRÊTS DU RÉSEAU
 #################
+RTC["Agri"] = Dict(:stop_lat => 46.776675,
+				   :stop_lon => -71.277630,
+				   :stop_name => "rue de l'Agriculture (place Ste-Foy)",
+				   :rt_stop_id => "Agri")
 
 all_stops = [TCJC["10-07"],TCJC["10-06"],TCJC["10-05"],TCJC["10-04"],TCJC["10-08"],
-             TCJC["10-03"],TCJC["10-02"],TCJC["10-01"],TCJC["30-04"],            TCJC["30-02"],RTC["5600"],RTC["5726"],RTC["1350"],RTC["3576"],RTC["7000"],RTC["7002"],RTC["4032"],RTC["4749"],RTC["1253"],RTC["5717"],RTC["1409"]]
+             TCJC["10-03"],TCJC["10-02"],TCJC["10-01"],TCJC["30-04"],            TCJC["30-02"],RTC["5600"],RTC["5726"],RTC["1350"],RTC["3576"],RTC["7000"],RTC["7002"],RTC["4032"],RTC["4749"],RTC["1253"],RTC["5717"],RTC["1409"],RTC["Agri"],RTC["1994"]]
 
 ############
 #PARCOURS 14
@@ -195,7 +199,7 @@ all_stops = [TCJC["10-07"],TCJC["10-06"],TCJC["10-05"],TCJC["10-04"],TCJC["10-08
 # Arrêts normals
 route_14_stops = [TCJC["10-07"],TCJC["10-06"],TCJC["10-05"],TCJC["10-04"],TCJC["10-08"],
                        TCJC["10-03"],TCJC["10-02"],TCJC["10-01"],TCJC["30-04"],
-                       TCJC["30-02"],RTC["4032"],RTC["5717"],RTC["1253"],RTC["7000"],RTC["7002"],RTC["1409"]]
+                       TCJC["30-02"],RTC["4032"],RTC["5717"],RTC["1253"],RTC["7000"],RTC["Agri"],RTC["1994"],RTC["1409"]]
 
 # 14 direction peu achalandé n'arrête pas aux halles ni aux Saules
 route_14r_stops = [TCJC["10-07"],TCJC["10-06"],TCJC["10-05"],TCJC["10-04"],TCJC["10-08"],
