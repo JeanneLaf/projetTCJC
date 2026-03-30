@@ -272,7 +272,7 @@ depart14AM1 = Dict(
     :trip_headsign => "Express SCJC vers ULaval via Shannon",
     :shape_id => "SHAPE_14",
     :stops => route_14_stops,
-    :stop_times => compute_trip(route_14,Time(6,15),1.8),
+    :stop_times => compute_trip(route_14,Time(6,15),1.7),
     :all_route => route_14[:all_route]
 )
 
@@ -334,7 +334,7 @@ retour14AM2 = Dict(
     :service_id => "WEEKDAY",
     :trip_id => "14r_AM2",
     :trip_headsign => "Express ULaval vers SCJC via Shannon",
-    :shape_id => "ROUTE_14r_rev",
+    :shape_id => "ROUTE_14_rev",
     :stops => reverse(route_14_stops),
     :stop_times => compute_trip(route_14,Time(10,00),0.98,reverse_direction=true),
     :all_route => reverse(route_14[:all_route])
@@ -351,7 +351,7 @@ depart14PM1 = Dict(
     :trip_headsign => "Express ULaval vers SCJC via Shannon",
     :shape_id => "ROUTE_14_rev",
     :stops => reverse(route_14_stops),
-    :stop_times => compute_trip(route_14,Time(16,35),1.8,reverse_direction=true),
+    :stop_times => compute_trip(route_14,Time(16,35),1.6,reverse_direction=true),
     :all_route => reverse(route_14[:all_route])
 )
 
@@ -446,16 +446,6 @@ retour14PM3 = Dict(
     :all_route => route_14X[:all_route]
 )
 
-# Proposition 1
-trips1 = [depart14AM1, depart14PM1];
 
-# Proposition 2
-trips2 = [depart14AM1, retour14AM1, depart14AM2, depart14PM1, retour14PM1, depart14PM2];
-
-# Proposition 3
-trips3 = [depart14AM1, retour14AM1, depart14AM2, retour14AM2, depart14XAM2,
-          depart14XPM1, depart14PM1, retour14PM1, depart14PM2];
-
-# Version finale
 trips = [depart14AM1, depart14AM2, retour14AM2, depart14XAM2,
-          depart14XPM1, depart14PM1, retour14PM1, depart14PM2, depart14XPM2,depart14XPM3, retour14PM2,retour14PM3];
+          depart14XPM1, depart14PM1, retour14PM1, depart14PM2,retour14PM2,depart14XPM2,retour14PM3,depart14XPM3];

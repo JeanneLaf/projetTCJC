@@ -213,12 +213,12 @@ all_stops = [TCJC["10-07"],TCJC["10-06"],TCJC["10-05"],TCJC["10-04"],TCJC["10-08
 # Arrêts normals
 route_14_stops = [TCJC["10-07"],TCJC["10-06"],TCJC["10-05"],TCJC["10-04"],TCJC["10-08"],
                        TCJC["10-03"],TCJC["10-02"],TCJC["10-01"],TCJC["30-04"],
-                       TCJC["30-02"],RTC["4032"],RTC["5717"],RTC["1253"],RTC["7000"],RTC["7002"],RTC["1409"]]
+                       TCJC["30-02"],RTC["4032"],RTC["5717"]]
 
-# 14 direction peu achalandé n'arrête pas aux halles ni aux Saules
+# 14 direction peu achalandé n'arrête pas à Ste-Geneviève
 route_14r_stops = [TCJC["10-07"],TCJC["10-06"],TCJC["10-05"],TCJC["10-04"],TCJC["10-08"], 
                    TCJC["10-03"],TCJC["10-02"],TCJC["10-01"],TCJC["30-04"],
-                   TCJC["30-02"],RTC["4032"],RTC["1409"]] 
+                   TCJC["30-02"],RTC["5717"]] 
 
 route_14r_info = Dict(
     :route_id => "TCJC:14",
@@ -290,7 +290,7 @@ depart14AM1 = Dict(
     :trip_headsign => "Express SCJC vers ULaval via Shannon",
     :shape_id => "SHAPE_14",
     :stops => route_14_stops,
-    :stop_times => compute_trip(route_14,Time(6,15),1.8),
+    :stop_times => compute_trip(route_14,Time(6,12),1.68),
     :all_route => route_14[:all_route]
 )
 
@@ -303,7 +303,7 @@ depart14AM2 = Dict(
     :trip_headsign => "Express SCJC vers ULaval via Shannon",
     :shape_id => "SHAPE_14",
     :stops => route_14_stops,
-    :stop_times => compute_trip(route_14,Time(7,56),1.2),
+    :stop_times => compute_trip(route_14,Time(7,40),1.15),
     :all_route => route_14[:all_route]
 )
 
@@ -342,7 +342,7 @@ retour14AM1 = Dict(
     :trip_headsign => "Express ULaval vers SCJC via Shannon",
     :shape_id => "ROUTE_14r_rev",
     :stops => reverse(route_14r_stops),
-    :stop_times => compute_trip(route_14r,Time(7,32),1.2,reverse_direction=true),
+    :stop_times => compute_trip(route_14r,Time(7,11),0.85,reverse_direction=true),
     :all_route => reverse(route_14r[:all_route])
 )
 
@@ -369,7 +369,7 @@ depart14PM1 = Dict(
     :trip_headsign => "Express ULaval vers SCJC via Shannon",
     :shape_id => "ROUTE_14_rev",
     :stops => reverse(route_14_stops),
-    :stop_times => compute_trip(route_14,Time(16,35),1.8,reverse_direction=true),
+    :stop_times => compute_trip(route_14,Time(16,43),1.5,reverse_direction=true),
     :all_route => reverse(route_14[:all_route])
 )
 
@@ -382,7 +382,7 @@ depart14PM2 = Dict(
     :trip_headsign => "Express ULaval vers SCJC via Shannon",
     :shape_id => "ROUTE_14_rev",
     :stops => reverse(route_14_stops),
-    :stop_times => compute_trip(route_14,Time(18,35),1.2,reverse_direction=true),
+    :stop_times => compute_trip(route_14,Time(18,44),1.2,reverse_direction=true),
     :all_route => reverse(route_14[:all_route])
 )
 
@@ -479,138 +479,59 @@ trips3 = [depart14AM1, retour14AM1, depart14AM2, retour14AM2, depart14XAM2,
 end
 
 
-# ╔═╡ 8674e0ea-0599-4c49-a66e-fd95869587d7
-WideCell(md"""
-!!! info "Proposition de trajets en semaine"
-	##### AM
-	---
-	###### Parcours 14 *(ULaval via Shannon)*
-	- **Deux** départs à **6h15** et **8h**
-	```
-	Fossambault -> Sainte-Catherine -> Shannon -> Les Saules -> UL
-        6:15             6:32             6:50        7:18     7:32  
-	```
-	```
-	Fossambault -> Sainte-Catherine -> Shannon -> Les Saules -> UL
-        7:56             8:07            8:20        8:38      8:47  
-	```
-	###### Parcours 14X *(Route Ste-Geneviève)*
-	- **Deux** départs à **8h20** et **10h40**
-	```
-	Fossambault -> Sainte-Catherine -> Shannon -> Ste-Geneviève
-        10:40            10:49           11:00        11:11 
-	```
-	###### Parcours 13 *(Saint-Augustin)*
-	- Conserve **deux** départs (sur trois) à **6h** et **7h**
-	```
-	Fossambault -> Sainte-Catherine -> Saint-Augustin
-	   6:02             6:14               6:30    
-	```
-	```
-	Fossambault -> Sainte-Catherine -> Saint-Augustin
-	   6:58             7:10               7:34  
-	```
-
-		 
-	##### PM
-	---
-
-	###### Parcours 14 *(ULaval via Shannon)*
-    - **Deux** retours à **16h40** et **18h40**
-	```
-	 UL -> Les Saules -> Shannon -> Sainte-Catherine -> Fossambault
-    16:40     16:54       17:21          17:42             18:00  
-	```
-	```
-	 UL -> Les Saules -> Shannon -> Sainte-Catherine -> Fossambault
-    18:40     18:47       19:06          19:20             19:30  
-	```
-	###### Parcours 14X (Route Ste-Geneviève)
-	- **Trois** retours à **12h45**, **20h05** et **21h05**
-    ```
-	 Ste-Geneviève -> Shannon -> Sainte-Catherine -> Fossambault
-         12:45         12:57          13:09             13:20 
-	```
-	```
-	 Ste-Geneviève -> Shannon -> Sainte-Catherine -> Fossambault
-         20:05         20:15          20:25             20:35 
-	```
-	```
-	 Ste-Geneviève -> Shannon -> Sainte-Catherine -> Fossambault
-         21:05         21:15          21:25             21:35 
-	```
-	###### Parcours 13 *(Saint-Augustin)*
-    - Conserve **deux** retours (sur cinq) à **15h30** et **16h32**
-	```
-	Saint-Augustin -> Sainte-Catherine -> Fossambault
-	     15:30             15:50             16:02    
-	```
-	```
-	Saint-Augustin -> Sainte-Catherine -> Fossambault
-	     16:32             17:00             17:17    
-	```
-	---
-	**KILOMÉTRAGE TOTAL DE LA PROPOSITION** `580 km`
-		 
-	**HEURES TRAVAILLÉES PAR LES CHAUFFEURS** `7 x 3h = 21h`
-		 
-	----
-	###### Actuellement (Parcours 12 et 33)
-	 - kilométrage `380 km`
-	 - blocs chauffeurs `7 x 3h`
-	---
-	###### Au 1er avril (Parcours 13 et 33)
-	 - kilométrage `372 km`
-	 - blocs chauffeurs `7 x 3h`
-""",max_width=800)
-
 # ╔═╡ 5e217e7f-6506-45b6-b2c8-1566f9449d77
 begin
+	retourAM1= [Dates.format(Time(t),"HH:MM") for t in retour14AM1[:stop_times]]
+	splice!(retourAM1, 2:1,["--" for i in 1:1])
+	splice!(retourAM1,5:11, ["--" for i in 1:7])
+	
+	retourAM2= [Dates.format(Time(t),"HH:MM") for t in retour14AM2[:stop_times]]
 	
 	stop_names = [s[:stop_name] for s in trips1[1][:stops]]
-	stop_names[end] *= " (cégep Garneau)"
+	#stop_names[end] *= " (cégep Garneau)"
 	
 	retourPM1= [Dates.format(Time(t),"HH:MM") for t in retour14PM1[:stop_times]]
-	splice!(retourPM1, 12:1,["--" for i in 1:4])
+	splice!(retourPM1, 11:1,["--" for i in 1:1])
 
 	retourPM2= [Dates.format(Time(t),"HH:MM") for t in retour14PM2[:stop_times]]
-	retourPM2 =vcat(retourPM2, ["--" for i in 1:5])
+	retourPM2 =vcat(retourPM2, ["--" for i in 1:1])
 
 	retourPM3= [Dates.format(Time(t),"HH:MM") for t in retour14PM3[:stop_times]]
-	retourPM3= vcat(retourPM3, ["--" for i in 1:5])
+	retourPM3= vcat(retourPM3, ["--" for i in 1:1])
+
+	AM2 = [Dates.format(Time(t),"HH:MM") for t in depart14AM2[:stop_times]]
+	#splice!(AM2, 1:8, reverse(retourAM1[5:end]) )
 
 	AM3 = [Dates.format(Time(t),"HH:MM") for t in depart14XAM2[:stop_times]]
-	AM3 = vcat(AM3,["--" for i in 1:5])
+	AM3 = vcat(AM3,["--" for i in 1:1])
 	
 	prop2_df = DataFrame(
 		no = [s[:rt_stop_id] for s in trips3[1][:stops]],
 		arrêt = stop_names,
 		_14_AM1 = [Dates.format(Time(t),"HH:MM") for t in depart14AM1[:stop_times]],
-		_14_AM2 = [Dates.format(Time(t),"HH:MM") for t in depart14AM2[:stop_times]],
+		_14_AM2 = AM2,
 		_14X_AM = AM3,
 		_14_rPM1 = retourPM1,
 		_14X_rPM2 = retourPM2,
 		_14X_rPM3 = retourPM3
 	)
 	
-	retourAM1= [Dates.format(Time(t),"HH:MM") for t in retour14AM1[:stop_times]]
-	splice!(retourAM1, 2:1,["--" for i in 1:2])
 	
-	retourAM2= [Dates.format(Time(t),"HH:MM") for t in retour14AM2[:stop_times]]
+	
 	
 	PM1 = [Dates.format(Time(t),"HH:MM") for t in depart14XPM1[:stop_times]]
-	PM1 = vcat(["--" for i in 1:5], PM1)
+	PM1 = vcat(["--" for i in 1:1], PM1)
 
 	PM4 = [Dates.format(Time(t),"HH:MM") for t in depart14XPM2[:stop_times]]
-	PM4 = vcat(["--" for i in 1:5], PM4)
+	PM4 = vcat(["--" for i in 1:1], PM4)
 
 	PM5 = [Dates.format(Time(t),"HH:MM") for t in depart14XPM3[:stop_times]]
-	PM5 = vcat(["--" for i in 1:5], PM5)
+	PM5 = vcat(["--" for i in 1:1], PM5)
 	
 	prop2_dfr = DataFrame(
 		no = [s[:rt_stop_id] for s in trips1[2][:stops]],
 		arrêt = reverse(stop_names),
-		retourAM = retourAM2,
+		retourAM = retourAM1,
 		PM1 = PM1,
 		PM2 = [Dates.format(Time(t),"HH:MM") for t in depart14PM1[:stop_times]],
 		PM3 = [Dates.format(Time(t),"HH:MM") for t in depart14PM2[:stop_times]],
@@ -694,22 +615,28 @@ end
 
 # ╔═╡ b25931ed-eda4-4d36-9365-db7c602895bd
 begin
-	chauffeur1_df = DataFrame([
-	   ["5:30-6:00",
+	chauffeur1_df1 = DataFrame([
+	   ["5:40-6:00",
 		"6:00-7:56",
-		"7:56-8:50",
-		"9:00-10:00",
-		"10:00-11:11",
+		"7:56-8:45",
+	    "8:45-11:11",
+	    "11:11-11:30"],
+		["Maison -> Fossambault","Parcours 13","Pause","Parcours 14","Retour maison"]
+	],:auto)
+
+	chauffeur1_df2 = DataFrame([
+	   ["10:20-10:40",
+		"10:40-11:11",
 		"11:11-12:45",
 		"12:45-13:14",
-		"13:14-14:00"],
-		["Maison -> Fossambault","Parcours 13","Parcours 14","Pause","Parcours 14","Pause/Diner","Parcours 14","Retour maison"]
+		"13:14-13:30"],
+		["Maison -> Fossambault","Parcours 14","Pause/Diner","Parcours 14","Retour maison"]
 	],:auto)
 
 	chauffeur2_df1 = DataFrame([
-	   ["5:45-6:15",
-		"6:15-7:40",
-		"7:40-8:10"],
+	   ["5:45-6:12",
+		"6:15-8:20",
+		"8:20-8:45"],
 		["Maison -> Fossambault","Parcours 14","Retour maison"]
 	],:auto)
 
@@ -744,7 +671,7 @@ begin
 		margin-bottom: 25px;
         flex: 1;
         width: 250px;
-        height: 260px;
+        height: 290px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -757,8 +684,8 @@ begin
     <!-- Chauffeur 1 -->
     <div class="horaire_chauffeurs">
         <h6>Chauffeur 1</h6>
-        $(show_table(chauffeur1_df,["Heure","Parcours désservi"],show_column_headers=false))
-        <div style="margin-top:auto; font-weight:bold;">Temps: 3 x 3h = 9h</div>
+        $(show_table(chauffeur1_df1,["Heure","Parcours désservi"],show_column_headers=false))
+        <div style="margin-top:auto; font-weight:bold;">Temps: 2 x 3h = 6h</div>
     </div>
 
     <!-- Chauffeur 2 -->
@@ -1473,10 +1400,9 @@ version = "17.5.0+2"
 """
 
 # ╔═╡ Cell order:
-# ╟─8674e0ea-0599-4c49-a66e-fd95869587d7
 # ╟─5e217e7f-6506-45b6-b2c8-1566f9449d77
 # ╟─e8bf50f0-a5c1-4ba4-b3f7-d25d78920ae2
-# ╟─b25931ed-eda4-4d36-9365-db7c602895bd
-# ╟─43eb24bf-4357-4a51-ab12-a2fd000b9cf1
+# ╠═b25931ed-eda4-4d36-9365-db7c602895bd
+# ╠═43eb24bf-4357-4a51-ab12-a2fd000b9cf1
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002

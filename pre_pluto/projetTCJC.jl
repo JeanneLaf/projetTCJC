@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.20.24
+# v0.20.21
 
 #> [frontmatter]
 #> image = "https://cdn-icons-png.flaticon.com/512/4565/4565023.png"
@@ -201,19 +201,69 @@ end
 #################
 #ARRÊTS DU RÉSEAU
 #################
+TCJC["30-07"] = Dict(:stop_name => "Chemin Dublin / rue de Bretagne",
+					 :stop_lat => 46.8736608,
+					 :stop_lon => -71.5288398,
+					 :rt_stop_id => "30-07")
+TCJC["30-08"] = Dict(:stop_name => "Chemin Dublin / rue du Parc",
+					 :stop_lat => 46.8851185,
+					 :stop_lon => -71.5286014,
+					 :rt_stop_id => "30-08")
+TCJC["30-09"] = Dict(:stop_name => "Chemin de Gosford / Chemin de Wexford",
+					 :stop_lat => 46.9108404,
+					 :stop_lon => -71.5390772,
+					 :rt_stop_id => "30-09")
+TCJC["30-10"] = Dict(:stop_name => "Chemin de Gosford / rue Donaldson",
+					 :stop_lat => 46.9213040,
+					 :stop_lon => -71.5518348,
+					 :rt_stop_id => "30-10")
+TCJC["30-11"] = Dict(:stop_name => "rue Donaldson / rue Miller",
+					 :stop_lat => 46.9139910,
+					 :stop_lon => -71.5454946,
+					 :rt_stop_id => "30-11")
 
-all_stops = [TCJC["10-07"],TCJC["10-06"],TCJC["10-05"],TCJC["10-04"],TCJC["10-08"],
-             TCJC["10-03"],TCJC["10-02"],TCJC["10-01"],TCJC["30-04"],TCJC["30-03"],
-             TCJC["30-02"],RTC["5600"],RTC["5726"],RTC["1350"],RTC["3576"],RTC["7000"],RTC["4032"],RTC["4749"],RTC["1253"]]
+TCJC["CFBV-01"] = Dict(:stop_name => "Général-Tremblay / Chassé",
+					   :stop_lat => 46.8862066,
+					   :stop_lon =>  -71.4892470,
+					   :rt_stop_id => "CFBV-01")
+TCJC["CFBV-02"] = Dict(:stop_name => "Général-Tremblay / Cardin",
+					   :stop_lat => 46.8892958,
+					   :stop_lon =>  -71.4920285,
+					   :rt_stop_id => "CFBV-02")
+TCJC["CFBV-03"] = Dict(:stop_name => "Général-Tremblay / Joseph-Kaeble",
+					   :stop_lat =>  46.8954112,
+					   :stop_lon =>  -71.4918131,
+					   :rt_stop_id => "CFBV-03")
+TCJC["CFBV-04"] = Dict(:stop_name => "Général-Tremblay / Joseph-Kaeble",
+					   :stop_lat =>  46.8954112,
+					   :stop_lon =>  -71.4918131,
+					   :rt_stop_id => "CFBV-04")
+############
+#PARCOURS 33
+############
+#route_33_stops = [TCJC["30-10"], TCJC["30-11"],TCJC["30-09"],TCJC["30-04"],TCJC["30-07"],TCJC["30-08"],TCJC["30-06"],TCJC["30-04"],TCJC["30-03"],TCJC["30-02"],RTC["5600"],TCJC["CFBV-01"],TCJC["CFBV-02"],TCJC["CFBV-03"]]
+route_33_stops = [TCJC["10-07"],TCJC["10-06"],TCJC["10-05"],TCJC["10-04"],TCJC["10-08"],TCJC["30-07"],TCJC["30-08"],TCJC["30-06"],TCJC["30-04"],TCJC["30-03"],TCJC["30-02"]]
 
+# Informations pour GTFS
+route_33_info = Dict(
+    :route_id => "TCJC:33",
+    :agency_id => "tests_TCJC",
+    :route_short_name => "33",
+    :route_long_name => "Fossambault-sur-le-lac - Shannon",
+    :route_type => 3, # 3 = Bus
+    :route_color => "00a1e5", 
+    :shape_id => "ROUTE_33",
+    :stops => route_33_stops
+)
+
+# Calcul du temps de trajet et distances
+route_33 = merge(route_33_info, compute_route(mx,route_33_stops))
 ############
 #PARCOURS 14
 ############
 
 # Arrêts normals
-route_14_stops = [TCJC["10-07"],TCJC["10-06"],TCJC["10-05"],TCJC["10-04"],TCJC["10-08"],
-                       TCJC["10-03"],TCJC["10-02"],TCJC["10-01"],TCJC["30-04"],TCJC["30-03"],
-                       TCJC["30-02"],RTC["4032"],RTC["1350"],RTC["1253"],RTC["3576"],RTC["7000"]]
+route_14_stops = [TCJC["10-01"],TCJC["10-02"],TCJC["10-03"],TCJC["30-04"],TCJC["30-03"],TCJC["30-02"],RTC["4032"],RTC["1350"],RTC["1253"],RTC["3576"],RTC["7000"]]
 
 # 14 direction peu achalandé n'arrête pas aux halles ni aux Saules
 route_14r_stops = [TCJC["10-07"],TCJC["10-06"],TCJC["10-05"],TCJC["10-04"],TCJC["10-08"],
@@ -436,24 +486,13 @@ WideCell(html"""
 # ╔═╡ c70e54be-50aa-43eb-894d-f626a7844ee6
 WideCell(md"""### Parcours prévu au 1er avril 2026""", max_width=800)
 
-# ╔═╡ 5fc761a3-c205-4616-8ee0-c3c609be2975
-begin
-	heure="06:50"
-	response = callAPI((TCJC["10-07"][:stop_lat],TCJC["10-07"][:stop_lon]),
-					   (RTC["5912"][:stop_lat],RTC["5912"][:stop_lon]),heure)
-
-	itinerary = parse_itinerary(response,MAP_BOUNDS=[(46.7,-71.6),(46.9,-71.4)])
-	map = itinerary[:map]
-
-	WideCell(@htl(
-	"""<div class="titre_parcours">Parcours 13<br> <p style="font-size: 14px;font-weight:normal">Fossambault -> Sainte-Catherine -> Saint-Augustin</p></div> 
-			$(map)
-					
-"""),max_width=800)
-end
-
 # ╔═╡ 9aa1e839-79ad-46a3-a647-54e8c8b508a6
 WideCell(md"""### Parcours que nous aimerions ajouter""", max_width=800)
+
+# ╔═╡ 6ddd2a99-0b99-4fb7-9406-392ccffb1982
+md"""
+Distance: $(round(route_33[:total_distance]/1000)) km, Temps: $(round(route_33[:total_time]/60)) minutes
+"""
 
 # ╔═╡ b942dc52-cf40-4c62-a74d-96fbe19e5df4
 begin
@@ -471,11 +510,11 @@ begin
 
 	# Stop markers
 	for stop in route_14[:stops]
-		flm.Marker(location=[stop["stop_lat"],stop["stop_lon"]],
+		flm.CircleMarker(location=[stop["stop_lat"],stop["stop_lon"]],
 				   		 popup=stop["stop_name"],
 						 fill = true,
-				   		 radius = 4,
-						 icon= flm.Icon(color="orange",icon="bus",prefix="fa")
+				   		 radius = 2,
+						 color = "#e69800"
 				   ).add_to(m) 
 	end
 
@@ -485,90 +524,37 @@ begin
 	    [(loc.lat, loc.lon) for loc in locs ],
 	    popup=info,
 	    tooltip=info,
-	    #color="#274e13"
-	    color="#02547a"
+	    color="#e69800"
+	    #color="#02547a"
 	).add_to(m)
 
 	# Map edges
 	MAP_BOUNDS = [(46.78,-71.5),(46.92,-71.4)]
 	m.fit_bounds(MAP_BOUNDS);
+end
 
-	#Temps et distance
-	longueur14 = round(route_14[:total_distance]/1000, digits=2)
-
-
-	### PARCOURS 14X ###
-	m2 = flm.Map()
-	locs2 = [LLA(mx.nodes[n],mx.bounds) for n in route_14X[:all_route]]
-	for stop in route_14X[:stops]
-		flm.Marker(location=[stop["stop_lat"],stop["stop_lon"]],
-				   		 popup=stop["stop_name"],
-						 fill = true,
-				   		 radius = 4,
-						 icon= flm.Icon(color="orange",icon="bus",prefix="fa")
-				   ).add_to(m2) 
-	end
-	flm.PolyLine(        
-	    [(loc.lat, loc.lon) for loc in locs2 ],
-	    popup="parcours 14x",
-	    #color="#274e13"
-	    color="#02547a"
-	).add_to(m2)
-	
-	m2.fit_bounds(MAP_BOUNDS);
-
-	#Temps et distance
-	longueur14X = round(route_14X[:total_distance]/1000, digits=2)
-
-WideCell(
-	@htl("""
-	<style>
-		.titre_parcours{
-			background-color: #02547a;
-			color: white;
-			font-size: 18px;
-			padding: 5px;
-		 	text-align:center;
-			font-weight: bold;
-		}
-		 .temps_distance{
-			 background-color: #f2f3f5;
-			 font-size: 13px;
-			 padding: 5px;
-		 }
-		 .pourquoi{
-			background-color:#f7f6f0;
-			padding: 5px;
-			border-left: 8px solid #d6d5ce;
-			border-radius: 5px;
-		 	margin-top:10px;
-		}
-		  ul li { margin-bottom: 15px; }
-	</style>
-		 
-
-		 <div class="titre_parcours">Parcours 14<br> <p style="font-size: 14px;font-weight:normal">Fossambault -> Sainte-Catherine -> Shannon -> les Saules -> UL</p></div> 
-		 $(m)
-		 <div class="temps_distance">Longueur du trajet: $(longueur14) km</div>
-
-		 <div class="titre_parcours">Parcours 14X<br> <p style="font-size: 14px;font-weight:normal">Fossambault -> Sainte-Catherine -> Shannon -> Route Sainte-Geneviève</p></div>
-		 $(m2)
-		 <div class="temps_distance">Longueur du trajet: $(longueur14X) km</div>
-	<div class="pourquoi">
-		<h5>Pourquoi ces parcours</h5>
-		 <hr>
-		<ul>
-		<li> <b>Évitent les artères problématiques du aux travaux du tramway</b><br>
-		<li> Le 14 permet de maintenir un <b>parcours direct pour les étudiants de l'université Laval et du cégep Ste-Foy</b>. 
-		 
-		<li> <b>Transferts efficaces</b> à Ste-Geneviève et aux Saules pour se rendre aux autres destinations (Écoles secondaires, centre-ville, limoilou, etc.) 
-		<li> Connexion avec les <b>métrobus 803, 804 et 805</b>
-		<li> <b>Voies réservés pour les bus</b> sur Henri-IV sud (573) à partir de la route Ste-Geneviève et sur Robert-Bourassa (740)
-		<li> Dessert <b>3 municipalités</b> donc les frais supplémentaires pourront être partagés entre ces trois municipalités
-		</ul>
-	</div>
-	"""), max_width=800)
-
+# ╔═╡ 0f53d0d8-8d0d-4d49-887b-6dd4f2e43bb2
+begin
+	### PARCOURS 33 ###
+		m3 = flm.Map()
+		locs3 = [LLA(mx.nodes[n],mx.bounds) for n in route_33[:all_route]]
+		for stop in route_33[:stops]
+			flm.CircleMarker(location=[stop[:stop_lat],stop[:stop_lon]],
+					   		 popup=stop[:stop_name],
+							 fill = true,
+					   		 radius = 2,
+							 color = "#00a1e5"
+					   ).add_to(m) 
+		end
+		flm.PolyLine(        
+		    [(loc.lat, loc.lon) for loc in locs3 ],
+		    popup="parcours 33",
+		    #color="#274e13"
+		    color="#00a1e5"
+		).add_to(m)
+		
+		m3.fit_bounds(MAP_BOUNDS);
+	WideCell(m)
 end
 
 # ╔═╡ 13d142b5-dfd8-4838-ad97-703101eda29b
@@ -577,6 +563,8 @@ md"""
 """
 
 # ╔═╡ 895973ef-3dcb-49fc-ad2d-b5bb7edd5e5b
+# ╠═╡ disabled = true
+#=╠═╡
 begin
 	function _compute_route(mx::MapData,parcours::Array)
     """
@@ -606,6 +594,7 @@ end
 	route_14[:all_route]=_compute_route(mx,route_14_modif)
 	"Bip-Bip-Boup"
 end
+  ╠═╡ =#
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
@@ -1298,11 +1287,12 @@ version = "17.5.0+2"
 # ╔═╡ Cell order:
 # ╟─49fe8bd6-41c7-46ca-96bb-bf001ec4c4f6
 # ╟─c70e54be-50aa-43eb-894d-f626a7844ee6
-# ╟─5fc761a3-c205-4616-8ee0-c3c609be2975
 # ╟─9aa1e839-79ad-46a3-a647-54e8c8b508a6
+# ╟─0f53d0d8-8d0d-4d49-887b-6dd4f2e43bb2
+# ╟─6ddd2a99-0b99-4fb7-9406-392ccffb1982
 # ╟─b942dc52-cf40-4c62-a74d-96fbe19e5df4
 # ╟─13d142b5-dfd8-4838-ad97-703101eda29b
-# ╟─43eb24bf-4357-4a51-ab12-a2fd000b9cf1
-# ╟─895973ef-3dcb-49fc-ad2d-b5bb7edd5e5b
+# ╠═43eb24bf-4357-4a51-ab12-a2fd000b9cf1
+# ╠═895973ef-3dcb-49fc-ad2d-b5bb7edd5e5b
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
