@@ -1,6 +1,6 @@
 (function ($) {
   function loadNotebook() {
-    var hash = location.hash || '#carte';
+    var hash = location.hash || '#pdf';
     var region = "www/" + hash.slice(1);
     var $iframe = $('#content-frame');
 
